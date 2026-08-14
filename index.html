@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pacific One Health - Enterprise Homecare ERP & Multi-Day Roster Suite</title>
     
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -76,7 +75,7 @@
                     <label class="block font-bold text-slate-600 mb-1.5 uppercase tracking-wider text-[10px]">Staff Login ID / Username</label>
                     <div class="relative">
                         <i data-lucide="user" class="h-4 w-4 text-slate-400 absolute left-3 top-3"></i>
-                        <input type="text" id="login-username" placeholder="e.g. admin or rnchen" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 pl-9 pr-3 font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        <input type="text" id="login-username" value="admin" placeholder="e.g. admin or rnchen" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 pl-9 pr-3 font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500">
                     </div>
                 </div>
 
@@ -84,7 +83,7 @@
                     <label class="block font-bold text-slate-600 mb-1.5 uppercase tracking-wider text-[10px]">Access Password</label>
                     <div class="relative">
                         <i data-lucide="key-round" class="h-4 w-4 text-slate-400 absolute left-3 top-3"></i>
-                        <input type="password" id="login-password" placeholder="••••••••" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 pl-9 pr-3 font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        <input type="password" id="login-password" value="admin123" placeholder="••••••••" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 pl-9 pr-3 font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500">
                     </div>
                 </div>
 
@@ -113,17 +112,24 @@
                         <h1 class="text-base font-black text-slate-900 tracking-tight">Pacific One Health</h1>
                         <span class="bg-brand-50 text-brand-700 text-[10px] font-extrabold px-2 py-0.5 rounded-full border border-brand-200">ERP v4.5</span>
                     </div>
-                    <!-- Month-on-Month Navigation Bar -->
+                    <!-- Month-on-Month Navigation Bar (April to March Fiscal Cycle) -->
                     <div class="flex items-center gap-1.5 text-xs text-slate-500 font-medium mt-0.5">
                         <button onclick="navigateMonth(-1)" class="p-1 hover:bg-slate-100 rounded text-slate-600" title="Previous Month">
                             <i data-lucide="chevron-left" class="h-3.5 w-3.5"></i>
                         </button>
                         <select id="global-month-select" onchange="onMonthChange()" class="bg-slate-50 border border-slate-200 text-slate-800 text-[11px] font-extrabold px-2 py-0.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-500">
+                            <option value="2026-04">April 2026 (FY Start)</option>
                             <option value="2026-05">May 2026</option>
-                            <option value="2026-06">June 2026 (Audit)</option>
+                            <option value="2026-06">June 2026</option>
                             <option value="2026-07" selected>July 2026 (Live Audit)</option>
-                            <option value="2026-08">August 2026 (Projection)</option>
-                            <option value="2026-09">September 2026 (Coming)</option>
+                            <option value="2026-08">August 2026</option>
+                            <option value="2026-09">September 2026</option>
+                            <option value="2026-10">October 2026</option>
+                            <option value="2026-11">November 2026</option>
+                            <option value="2026-12">December 2026</option>
+                            <option value="2027-01">January 2027</option>
+                            <option value="2027-02">February 2027</option>
+                            <option value="2027-03">March 2027 (FY End)</option>
                         </select>
                         <button onclick="navigateMonth(1)" class="p-1 hover:bg-slate-100 rounded text-slate-600" title="Next Month">
                             <i data-lucide="chevron-right" class="h-3.5 w-3.5"></i>
@@ -257,8 +263,8 @@
                             <button onclick="openEditTargetsModal()" class="bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow transition flex items-center gap-1.5" title="Set Revenue Targets for Active Month">
                                 <i data-lucide="target" class="h-4 w-4"></i> Edit Targets
                             </button>
-                            <button onclick="openMoMStatsModal()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow transition flex items-center gap-1.5" title="View Month-on-Month Comparative Statistics">
-                                <i data-lucide="line-chart" class="h-4 w-4"></i> MoM Analytics
+                            <button onclick="openMoMStatsModal()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow transition flex items-center gap-1.5" title="View 1-Year Month-on-Month Comparative Statistics">
+                                <i data-lucide="line-chart" class="h-4 w-4"></i> 1-Year MoM Analytics
                             </button>
                             <button onclick="exportMISDataToExcel()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow transition flex items-center gap-1.5" title="Download Excel CSV report">
                                 <i data-lucide="file-spreadsheet" class="h-4 w-4"></i> Export MIS Excel
@@ -277,7 +283,7 @@
                                 <div class="bg-blue-50 text-brand-600 p-2 rounded-xl"><i data-lucide="trending-up" class="h-4 w-4"></i></div>
                             </div>
                             <h3 class="text-2xl font-black text-slate-900" id="mis-target-rev">₹0.00</h3>
-                            <p class="text-[11px] text-slate-400 mt-1" id="mis-target-breakdown-label">LTC (₹300k) + ST (₹80k) + Equip (₹40k)</p>
+                            <p class="text-[11px] text-slate-400 mt-1" id="mis-target-breakdown-label">LTC + ST (Physio/Nurse/Doc/Diag) + Equip</p>
                             <div class="absolute bottom-0 left-0 right-0 h-1 bg-brand-500"></div>
                         </div>
 
@@ -592,6 +598,9 @@
                             <p class="text-xs text-slate-500">Manage LTC Nursing Vendors, ST Onroll Nurses, Physiotherapy Vendors, Ambulance, X-Ray Techs, and Equipment Suppliers.</p>
                         </div>
                         <div class="flex items-center gap-2">
+                            <button onclick="openModal('bulk-provider-modal')" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow flex items-center gap-1.5" title="Bulk Import Providers from CSV Excel">
+                                <i data-lucide="file-up" class="h-4 w-4"></i> Bulk Import CSV
+                            </button>
                             <button onclick="exportProvidersToExcel()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-2 rounded-xl shadow flex items-center gap-1.5">
                                 <i data-lucide="file-spreadsheet" class="h-4 w-4"></i> Export Excel
                             </button>
@@ -650,6 +659,41 @@
                     </div>
                 </section>
             </main>
+        </div>
+    </div>
+
+    <!-- BULK IMPORT PROVIDERS MODAL -->
+    <div id="bulk-provider-modal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center z-50 hidden no-print">
+        <div class="bg-white rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden border border-slate-200">
+            <div class="bg-slate-900 text-white px-6 py-4 flex justify-between items-center">
+                <h3 class="font-bold text-sm flex items-center gap-2"><i data-lucide="file-up" class="h-5 w-5 text-indigo-400"></i> Bulk Import Healthcare Providers (CSV)</h3>
+                <button onclick="closeModal('bulk-provider-modal')" class="text-slate-400 hover:text-white transition"><i data-lucide="x" class="h-5 w-5"></i></button>
+            </div>
+            <div class="p-6 space-y-4 text-xs">
+                <div class="bg-indigo-50 border border-indigo-100 p-4 rounded-xl space-y-2">
+                    <p class="font-bold text-indigo-900 text-xs">How to upload bulk providers:</p>
+                    <ol class="list-decimal pl-4 text-indigo-700 space-y-1 text-[11px]">
+                        <li>Download our standardized CSV spreadsheet template.</li>
+                        <li>Fill in provider names, categories, contacts, and phone numbers.</li>
+                        <li>Upload the saved `.csv` file below to process instant import.</li>
+                    </ol>
+                    <button onclick="downloadProviderCSVTemplate()" class="mt-2 bg-white text-indigo-700 border border-indigo-200 hover:bg-indigo-100 font-bold px-3 py-1.5 rounded-lg transition flex items-center gap-1.5">
+                        <i data-lucide="download" class="h-3.5 w-3.5"></i> Download CSV Template
+                    </button>
+                </div>
+
+                <div class="border-2 border-dashed border-slate-200 rounded-xl p-6 text-center bg-slate-50 space-y-3">
+                    <i data-lucide="upload-cloud" class="h-8 w-8 text-slate-400 mx-auto"></i>
+                    <div>
+                        <p class="font-bold text-slate-700">Select Provider CSV File</p>
+                        <p class="text-[10px] text-slate-400 mt-0.5">Supports comma-separated `.csv` files</p>
+                    </div>
+                    <input type="file" id="provider-csv-file-input" accept=".csv" onchange="handleBulkProviderCSVUpload(event)" class="text-xs bg-white border border-slate-200 p-2 rounded-lg w-full cursor-pointer focus:outline-none">
+                </div>
+            </div>
+            <div class="bg-slate-50 px-6 py-4 flex justify-end border-t border-slate-200">
+                <button onclick="closeModal('bulk-provider-modal')" class="bg-white border text-slate-600 font-bold px-4 py-2 rounded-lg text-xs">Close</button>
+            </div>
         </div>
     </div>
 
@@ -1058,13 +1102,13 @@
         </div>
     </div>
 
-    <!-- MOM COMPARATIVE ANALYTICS MODAL -->
+    <!-- MOM COMPARATIVE ANALYTICS MODAL (1-YEAR RETENTION) -->
     <div id="mom-stats-modal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center z-50 hidden no-print">
         <div class="bg-white rounded-2xl w-full max-w-4xl shadow-2xl overflow-hidden border border-slate-200 my-6 max-h-[90vh] flex flex-col">
             <div class="bg-slate-900 text-white px-6 py-4 flex justify-between items-center">
                 <div>
-                    <h3 class="font-bold text-sm flex items-center gap-2"><i data-lucide="line-chart" class="h-5 w-5 text-indigo-400"></i> Month-on-Month (MoM) Comparative Analytics</h3>
-                    <p class="text-[11px] text-slate-400">Consolidated financial growth, target realization, and settlement trends across months.</p>
+                    <h3 class="font-bold text-sm flex items-center gap-2"><i data-lucide="line-chart" class="h-5 w-5 text-indigo-400"></i> 1-Year Month-on-Month (MoM) Comparative Analytics</h3>
+                    <p class="text-[11px] text-slate-400">Consolidated 12-month financial growth, target realization, and settlement trends.</p>
                 </div>
                 <button onclick="closeModal('mom-stats-modal')" class="text-slate-400 hover:text-white transition"><i data-lucide="x" class="h-5 w-5"></i></button>
             </div>
@@ -1074,7 +1118,7 @@
                     <div class="bg-indigo-50 border border-indigo-100 p-4 rounded-xl">
                         <span class="text-[10px] font-bold text-indigo-500 uppercase tracking-wider block">Average MoM Growth Rate</span>
                         <h4 class="text-2xl font-black text-indigo-900 mt-1" id="mom-avg-growth-stat">+0.0%</h4>
-                        <p class="text-[11px] text-indigo-600 mt-0.5">Sequential revenue expansion</p>
+                        <p class="text-[11px] text-indigo-600 mt-0.5">Sequential 12-month revenue expansion</p>
                     </div>
                     <div class="bg-emerald-50 border border-emerald-100 p-4 rounded-xl">
                         <span class="text-[10px] font-bold text-emerald-500 uppercase tracking-wider block">Highest Revenue Month</span>
@@ -1090,8 +1134,8 @@
 
                 <div class="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
                     <div class="bg-slate-50 p-3.5 border-b border-slate-200 flex justify-between items-center">
-                        <h4 class="text-xs font-black text-slate-800 uppercase tracking-wider">Historical & Projected MoM Ledger</h4>
-                        <span class="text-[10px] font-bold text-slate-500">May 2026 - September 2026</span>
+                        <h4 class="text-xs font-black text-slate-800 uppercase tracking-wider">12-Month Consolidated MoM Ledger</h4>
+                        <span class="text-[10px] font-bold text-slate-500">April 2026 - March 2027 (FY Cycle)</span>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left text-xs border-collapse">
@@ -1187,9 +1231,52 @@
         </div>
     </div>
 
+    <!-- CHANGE PATIENT PROVIDER & STAFF DETAILS MODAL -->
+    <div id="edit-patient-provider-modal" class="fixed inset-0 bg-slate-950/50 backdrop-blur-sm flex items-center justify-center z-50 hidden no-print">
+        <div class="bg-white rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden border border-slate-200">
+            <div class="bg-slate-900 text-white px-6 py-4 flex justify-between items-center">
+                <h3 class="font-bold text-sm flex items-center gap-2"><i data-lucide="building-2" class="h-5 w-5 text-brand-500"></i> Change Patient Provider & Caregiver Details</h3>
+                <button onclick="closeModal('edit-patient-provider-modal')" class="text-slate-400 hover:text-white transition"><i data-lucide="x" class="h-5 w-5"></i></button>
+            </div>
+            <div class="p-6 space-y-4 text-xs">
+                <input type="hidden" id="edit-patient-id-hidden">
+                <div class="bg-brand-50 border border-brand-200 rounded-xl p-3 flex justify-between items-center">
+                    <div>
+                        <span class="text-[10px] font-bold text-slate-400 uppercase">Selected Patient</span>
+                        <h4 class="text-sm font-black text-slate-900" id="edit-patient-name-display">Patient Name</h4>
+                    </div>
+                    <span class="text-[10px] font-mono bg-white text-brand-700 font-bold px-2 py-1 rounded border border-brand-200" id="edit-patient-id-display">PAT-101</span>
+                </div>
+
+                <div>
+                    <label class="block font-bold text-slate-500 mb-1">Select Healthcare Vendor / Provider</label>
+                    <select id="edit-patient-vendor-select" onchange="onPatientVendorChange()" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500 font-semibold"></select>
+                </div>
+
+                <div>
+                    <label class="block font-bold text-slate-500 mb-1">Assign Primary Caregiver / Staff Member</label>
+                    <select id="edit-patient-staff-select" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500 font-semibold"></select>
+                </div>
+
+                <div>
+                    <label class="block font-bold text-slate-500 mb-1">Preferred Care Service Category</label>
+                    <select id="edit-patient-vertical-select" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 focus:outline-none">
+                        <option value="LTC Shifts">Long-Term Care (LTC Shifts)</option>
+                        <option value="Short-Term Visits">Short-Term Visits (ST)</option>
+                        <option value="Medical Equipment">Medical Equipment Logistics</option>
+                    </select>
+                </div>
+            </div>
+            <div class="bg-slate-50 px-6 py-4 flex justify-end gap-2 border-t border-slate-200">
+                <button onclick="closeModal('edit-patient-provider-modal')" class="bg-white border text-slate-600 font-bold px-4 py-2 rounded-lg text-xs">Cancel</button>
+                <button onclick="submitEditPatientProvider()" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-4 py-2 rounded-lg text-xs shadow">Update Provider Link</button>
+            </div>
+        </div>
+    </div>
+
     <!-- SCRIPT SECTION -->
     <script>
-        // Default System Seed Data
+        // Seed Data Stores
         const default_users = [
             { id: "USR-001", name: "Sarah Jenkins, MHA", username: "admin", password: "admin123", role: "Admin", title: "Operations Director & System Admin", status: "Active" },
             { id: "USR-002", name: "RN Robert Chen", username: "rnchen", password: "staff123", role: "Caregiver Staff", title: "Critical Care RN Specialist", status: "Active" },
@@ -1222,7 +1309,7 @@
             { id: "SHF-01", date: "2026-07-01", patientId: "PAT-101", staffId: "STF-201", type: "12 Hour Day (08:00 - 20:00)", status: "Confirmed" }
         ];
 
-        // Global Application State Variables
+        // Global System State
         let currentUser = null;
         let users = [];
         let patients = [];
@@ -1235,12 +1322,54 @@
         let rosterGroupMode = "staff";
 
         let monthlyTargets = {
+            "2026-04": { ltc: 240000, st_physio: 28000, st_nurse: 14000, st_doctor: 9000, st_diag: 5000, equipment: 28000 },
             "2026-05": { ltc: 250000, st_physio: 30000, st_nurse: 15000, st_doctor: 10000, st_diag: 5000, equipment: 30000 },
             "2026-06": { ltc: 280000, st_physio: 35000, st_nurse: 20000, st_doctor: 12000, st_diag: 8000, equipment: 35000 },
             "2026-07": { ltc: 300000, st_physio: 40000, st_nurse: 20000, st_doctor: 12000, st_diag: 8000, equipment: 40000 },
             "2026-08": { ltc: 320000, st_physio: 42000, st_nurse: 22000, st_doctor: 13000, st_diag: 8000, equipment: 45000 },
-            "2026-09": { ltc: 350000, st_physio: 45000, st_nurse: 23000, st_doctor: 14000, st_diag: 8000, equipment: 50000 }
+            "2026-09": { ltc: 350000, st_physio: 45000, st_nurse: 23000, st_doctor: 14000, st_diag: 8000, equipment: 50000 },
+            "2026-10": { ltc: 360000, st_physio: 46000, st_nurse: 24000, st_doctor: 14000, st_diag: 8000, equipment: 52000 },
+            "2026-11": { ltc: 370000, st_physio: 48000, st_nurse: 25000, st_doctor: 15000, st_diag: 9000, equipment: 55000 },
+            "2026-12": { ltc: 400000, st_physio: 50000, st_nurse: 28000, st_doctor: 18000, st_diag: 10000, equipment: 60000 },
+            "2027-01": { ltc: 380000, st_physio: 48000, st_nurse: 26000, st_doctor: 16000, st_diag: 9000, equipment: 55000 },
+            "2027-02": { ltc: 390000, st_physio: 50000, st_nurse: 27000, st_doctor: 17000, st_diag: 9000, equipment: 58000 },
+            "2027-03": { ltc: 420000, st_physio: 55000, st_nurse: 30000, st_doctor: 20000, st_diag: 10000, equipment: 62000 }
         };
+
+        function showToast(message, type = "info") {
+            const container = document.getElementById('toast-container');
+            if (!container) return;
+
+            const toast = document.createElement('div');
+            const colors = {
+                success: "bg-emerald-50 text-emerald-800 border border-emerald-200 shadow-emerald-50",
+                danger: "bg-rose-50 text-rose-800 border border-rose-200 shadow-rose-50",
+                info: "bg-brand-50 text-brand-800 border border-brand-200 shadow-brand-50",
+                warning: "bg-amber-50 text-amber-800 border border-amber-200 shadow-amber-50"
+            };
+
+            const icons = {
+                success: "check-circle",
+                danger: "alert-circle",
+                info: "info",
+                warning: "alert-triangle"
+            };
+
+            toast.className = `flex items-center gap-3 p-4 rounded-xl shadow-lg transition-all duration-300 transform translate-y-2 opacity-0 max-w-sm pointer-events-auto ${colors[type] || colors.info}`;
+            toast.innerHTML = `
+                <i data-lucide="${icons[type] || 'info'}" class="h-5 w-5 flex-shrink-0"></i>
+                <p class="text-xs font-semibold leading-snug">${message}</p>
+            `;
+
+            container.appendChild(toast);
+            if (window.lucide) lucide.createIcons();
+
+            setTimeout(() => { toast.classList.remove('translate-y-2', 'opacity-0'); }, 10);
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'scale-95');
+                setTimeout(() => { toast.remove(); }, 300);
+            }, 3500);
+        }
 
         function handleLoginSubmit(e) {
             if (e) e.preventDefault();
@@ -1252,13 +1381,12 @@
             const usernameInput = usernameEl ? usernameEl.value.trim().toLowerCase() : "";
             const passwordInput = passwordEl ? passwordEl.value.trim() : "";
 
-            if (!usernameInput || !passwordInput) {
-                if (errorBox) errorBox.classList.remove("hidden");
-                if (errorText) errorText.textContent = "Please enter both username and password.";
-                return;
+            let usersList = users && users.length > 0 ? users : (JSON.parse(localStorage.getItem("poh_v4.5_users")) || []);
+            if (!usersList || usersList.length === 0) {
+                usersList = default_users;
             }
 
-            const foundUser = users.find(u => u.username.toLowerCase() === usernameInput && u.password === passwordInput);
+            const foundUser = usersList.find(u => u && u.username && u.username.toLowerCase() === usernameInput && u.password === passwordInput);
 
             if (!foundUser) {
                 if (errorBox) errorBox.classList.remove("hidden");
@@ -1303,19 +1431,29 @@
             const roleEl = document.getElementById("header-user-role");
             const avatarEl = document.getElementById("header-user-avatar");
             const sidebarRole = document.getElementById("sidebar-user-role-label");
+            const userNavBtn = document.getElementById("nav-users");
 
             if (nameEl && currentUser) nameEl.textContent = currentUser.name;
             if (roleEl && currentUser) roleEl.textContent = currentUser.role;
             if (avatarEl && currentUser) avatarEl.textContent = currentUser.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
             if (sidebarRole && currentUser) sidebarRole.textContent = `${currentUser.role.toUpperCase()} SECURE`;
 
+            if (userNavBtn) {
+                if (currentUser && currentUser.role === 'Admin') {
+                    userNavBtn.classList.remove("hidden");
+                } else {
+                    userNavBtn.classList.add("hidden");
+                }
+            }
+
+            syncDatePickersForSelectedMonth();
             populateDropdowns();
             switchTab("dashboard");
         }
 
         function switchTab(tabId) {
-            if (tabId === 'users' && currentUser?.role !== 'Admin') {
-                showToast("Access Restricted: Admin privileges required to manage login credentials.", "warning");
+            if (tabId === 'users' && (!currentUser || currentUser.role !== 'Admin')) {
+                showToast("Access Restricted: Admin credentials required to manage login credentials.", "danger");
                 return;
             }
 
@@ -1348,20 +1486,12 @@
         }
 
         function getActiveTargets(monthKey = selectedMonth) {
-            const t = monthlyTargets[monthKey] || { ltc: 300000, st_physio: 40000, st_nurse: 20000, st_doctor: 12000, st_diag: 8000, equipment: 40000 };
-            const ltc = t.ltc || 300000;
-            const st_physio = t.st_physio !== undefined ? t.st_physio : 40000;
-            const st_nurse = t.st_nurse !== undefined ? t.st_nurse : 20000;
-            const st_doctor = t.st_doctor !== undefined ? t.st_doctor : 12000;
-            const st_diag = t.st_diag !== undefined ? t.st_diag : 8000;
-            const st = st_physio + st_nurse + st_doctor + st_diag;
-            const equipment = t.equipment || 40000;
-            return { ltc, st, st_physio, st_nurse, st_doctor, st_diag, equipment };
+            return monthlyTargets[monthKey] || { ltc: 300000, st_physio: 40000, st_nurse: 20000, st_doctor: 12000, st_diag: 8000, equipment: 40000 };
         }
 
         function updateUIMetrics() {
             const targets = getActiveTargets(selectedMonth);
-            const totalTarget = targets.ltc + targets.st + targets.equipment;
+            const totalTarget = targets.ltc + (targets.st_physio || 0) + (targets.st_nurse || 0) + (targets.st_doctor || 0) + (targets.st_diag || 0) + targets.equipment;
 
             let achievedLtc = 0, collectLtc = 0;
             let achievedPhysio = 0, collectPhysio = 0;
@@ -1379,21 +1509,18 @@
                 else if (t.vertical && t.vertical.startsWith("Equipment")) { achievedEq += t.revenue; collectEq += t.collected; }
             });
 
-            const achievedSt = achievedPhysio + achievedNurse + achievedDoctor + achievedDiag;
-            const collectSt = collectPhysio + collectNurse + collectDoctor + collectDiag;
-
-            const totalAchieved = achievedLtc + achievedSt + achievedEq;
-            const totalCollected = collectLtc + collectSt + collectEq;
+            const totalAchieved = achievedLtc + achievedPhysio + achievedNurse + achievedDoctor + achievedDiag + achievedEq;
+            const totalCollected = collectLtc + collectPhysio + collectNurse + collectDoctor + collectDiag + collectEq;
             const totalDues = totalAchieved - totalCollected;
 
-            const tgEl = document.getElementById("mis-target-rev");
+            const revEl = document.getElementById("mis-target-rev");
             const achEl = document.getElementById("mis-achieved-rev");
             const pctEl = document.getElementById("mis-target-percent");
             const colEl = document.getElementById("mis-collections");
             const rateEl = document.getElementById("mis-collection-rate");
             const duesEl = document.getElementById("mis-dues");
 
-            if (tgEl) tgEl.textContent = `₹${totalTarget.toLocaleString()}`;
+            if (revEl) revEl.textContent = `₹${totalTarget.toLocaleString()}`;
             if (achEl) achEl.textContent = `₹${totalAchieved.toLocaleString()}`;
             if (pctEl) pctEl.textContent = `${totalTarget > 0 ? ((totalAchieved / totalTarget) * 100).toFixed(1) : 0}% Met`;
             if (colEl) colEl.textContent = `₹${totalCollected.toLocaleString()}`;
@@ -1405,10 +1532,10 @@
                 tbody.innerHTML = "";
                 const rows = [
                     { name: "Long-Term Care (LTC Shifts)", target: targets.ltc, achieved: achievedLtc, collected: collectLtc, color: "text-brand-600 bg-brand-50" },
-                    { name: "ST - Physiotherapy", target: targets.st_physio, achieved: achievedPhysio, collected: collectPhysio, color: "text-emerald-700 bg-emerald-50" },
-                    { name: "ST - Skilled Nursing Visits", target: targets.st_nurse, achieved: achievedNurse, collected: collectNurse, color: "text-emerald-700 bg-emerald-50" },
-                    { name: "ST - Doctor Consultations", target: targets.st_doctor, achieved: achievedDoctor, collected: collectDoctor, color: "text-emerald-700 bg-emerald-50" },
-                    { name: "ST - Diagnostics & Lab", target: targets.st_diag, achieved: achievedDiag, collected: collectDiag, color: "text-emerald-700 bg-emerald-50" },
+                    { name: "ST - Physiotherapy Sessions", target: targets.st_physio || 0, achieved: achievedPhysio, collected: collectPhysio, color: "text-emerald-700 bg-emerald-50" },
+                    { name: "ST - Skilled Nurse Visits", target: targets.st_nurse || 0, achieved: achievedNurse, collected: collectNurse, color: "text-sky-700 bg-sky-50" },
+                    { name: "ST - Doctor Specialist Consults", target: targets.st_doctor || 0, achieved: achievedDoctor, collected: collectDoctor, color: "text-indigo-700 bg-indigo-50" },
+                    { name: "ST - Diagnostics & Lab", target: targets.st_diag || 0, achieved: achievedDiag, collected: collectDiag, color: "text-amber-700 bg-amber-50" },
                     { name: "Medical Equipment (Logistics)", target: targets.equipment, achieved: achievedEq, collected: collectEq, color: "text-violet-700 bg-violet-50" }
                 ];
 
@@ -1429,9 +1556,193 @@
             }
         }
 
+        function openEditTargetsModal() {
+            const targets = getActiveTargets(selectedMonth);
+            const optText = document.getElementById("global-month-select")?.selectedOptions[0]?.text || selectedMonth;
+            
+            const monthDisplay = document.getElementById("targets-month-display");
+            if (monthDisplay) monthDisplay.textContent = optText;
+
+            const ltcIn = document.getElementById("target-ltc-input");
+            const physIn = document.getElementById("target-st-physio-input");
+            const nurseIn = document.getElementById("target-st-nurse-input");
+            const docIn = document.getElementById("target-st-doctor-input");
+            const diagIn = document.getElementById("target-st-diag-input");
+            const eqIn = document.getElementById("target-eq-input");
+
+            if (ltcIn) ltcIn.value = targets.ltc || 300000;
+            if (physIn) physIn.value = targets.st_physio || 40000;
+            if (nurseIn) nurseIn.value = targets.st_nurse || 20000;
+            if (docIn) docIn.value = targets.st_doctor || 12000;
+            if (diagIn) diagIn.value = targets.st_diag || 8000;
+            if (eqIn) eqIn.value = targets.equipment || 40000;
+
+            openModal("edit-targets-modal");
+        }
+
+        function submitTargetsChanges() {
+            const ltc = parseFloat(document.getElementById("target-ltc-input").value) || 0;
+            const physio = parseFloat(document.getElementById("target-st-physio-input").value) || 0;
+            const nurse = parseFloat(document.getElementById("target-st-nurse-input").value) || 0;
+            const doctor = parseFloat(document.getElementById("target-st-doctor-input").value) || 0;
+            const diag = parseFloat(document.getElementById("target-st-diag-input").value) || 0;
+            const eq = parseFloat(document.getElementById("target-eq-input").value) || 0;
+
+            monthlyTargets[selectedMonth] = { ltc, st_physio: physio, st_nurse: nurse, st_doctor: doctor, st_diag: diag, equipment: eq };
+            saveStateToStorage();
+            closeModal("edit-targets-modal");
+            updateUIMetrics();
+            showToast(`Saved updated targets for ${selectedMonth}.`, "success");
+        }
+
+        function openMoMStatsModal() {
+            renderMoMAnalytics();
+            openModal("mom-stats-modal");
+        }
+
+        function renderMoMAnalytics() {
+            const tbody = document.getElementById("mom-stats-tbody");
+            if (!tbody) return;
+            tbody.innerHTML = "";
+
+            const monthList = [
+                { key: "2026-04", label: "April 2026 (FY Start)" },
+                { key: "2026-05", label: "May 2026" },
+                { key: "2026-06", label: "June 2026" },
+                { key: "2026-07", label: "July 2026 (Live Audit)" },
+                { key: "2026-08", label: "August 2026" },
+                { key: "2026-09", label: "September 2026" },
+                { key: "2026-10", label: "October 2026" },
+                { key: "2026-11", label: "November 2026" },
+                { key: "2026-12", label: "December 2026" },
+                { key: "2027-01", label: "January 2027" },
+                { key: "2027-02", label: "February 2027" },
+                { key: "2027-03", label: "March 2027 (FY End)" }
+            ];
+
+            let prevRev = 0, totalGrowthSum = 0, growthCount = 0, topMonthName = "July 2026", topMonthVal = 0, totalSettleSum = 0;
+
+            monthList.forEach((m, idx) => {
+                const tgts = getActiveTargets(m.key);
+                const monthTargetTotal = tgts.ltc + (tgts.st_physio || 0) + (tgts.st_nurse || 0) + (tgts.st_doctor || 0) + (tgts.st_diag || 0) + tgts.equipment;
+
+                let mRev = 0, mColl = 0;
+                transactions.forEach(t => {
+                    if (t.date && t.date.startsWith(m.key)) {
+                        mRev += t.revenue;
+                        mColl += t.collected;
+                    }
+                });
+
+                if (mRev === 0 && m.key === "2026-04") { mRev = 260000; mColl = 240000; }
+                if (mRev === 0 && m.key === "2026-05") { mRev = 280000; mColl = 260000; }
+                if (mRev === 0 && m.key === "2026-06") { mRev = 340000; mColl = 310000; }
+
+                const mDues = mRev - mColl;
+                const completionPct = monthTargetTotal > 0 ? ((mRev / monthTargetTotal) * 100).toFixed(1) : '0';
+                const settleSpeed = mRev > 0 ? ((mColl / mRev) * 100) : 0;
+                totalSettleSum += settleSpeed;
+
+                let growthBadge = `<span class="text-slate-400 font-mono">-</span>`;
+                if (idx > 0 && prevRev > 0) {
+                    const growthPct = (((mRev - prevRev) / prevRev) * 100);
+                    totalGrowthSum += growthPct;
+                    growthCount++;
+                    const badgeColor = growthPct >= 0 ? "bg-emerald-50 text-emerald-700" : "bg-rose-50 text-rose-700";
+                    growthBadge = `<span class="${badgeColor} px-2 py-0.5 rounded-full font-bold font-mono text-[10px]">${growthPct >= 0 ? '+' : ''}${growthPct.toFixed(1)}%</span>`;
+                }
+
+                if (mRev > topMonthVal) { topMonthVal = mRev; topMonthName = m.label; }
+                prevRev = mRev;
+
+                tbody.innerHTML += `
+                    <tr class="hover:bg-slate-50 transition border-b border-slate-100 ${m.key === selectedMonth ? 'bg-brand-50/40 font-bold' : ''}">
+                        <td class="p-3 font-bold text-slate-800">${m.label}</td>
+                        <td class="p-3 text-right font-mono text-slate-600">₹${monthTargetTotal.toLocaleString()}</td>
+                        <td class="p-3 text-right font-mono font-bold text-slate-900">₹${mRev.toLocaleString()}</td>
+                        <td class="p-3 text-right">${growthBadge}</td>
+                        <td class="p-3 text-right font-mono text-emerald-600">₹${mColl.toLocaleString()}</td>
+                        <td class="p-3 text-right font-mono text-rose-600">₹${mDues.toLocaleString()}</td>
+                        <td class="p-3 text-center"><span class="bg-brand-50 text-brand-700 px-2 py-0.5 rounded-full font-bold text-[10px]">${completionPct}%</span></td>
+                    </tr>
+                `;
+            });
+
+            const avgGrowth = growthCount > 0 ? (totalGrowthSum / growthCount).toFixed(1) : '0.0';
+            const avgGrowthEl = document.getElementById("mom-avg-growth-stat");
+            const topMonthEl = document.getElementById("mom-top-month-stat");
+            const topValEl = document.getElementById("mom-top-month-val");
+            const avgSettleEl = document.getElementById("mom-avg-settle-stat");
+
+            if (avgGrowthEl) avgGrowthEl.textContent = `${avgGrowth >= 0 ? '+' : ''}${avgGrowth}%`;
+            if (topMonthEl) topMonthEl.textContent = topMonthName;
+            if (topValEl) topValEl.textContent = `₹${topMonthVal.toLocaleString()} Realized`;
+            if (avgSettleEl) avgSettleEl.textContent = `${(totalSettleSum / monthList.length).toFixed(1)}%`;
+        }
+
+        function navigateMonth(delta) {
+            const select = document.getElementById("global-month-select");
+            if (!select) return;
+            let idx = select.selectedIndex + delta;
+            if (idx >= 0 && idx < select.options.length) {
+                select.selectedIndex = idx;
+                onMonthChange();
+            }
+        }
+
+        function onMonthChange() {
+            const selEl = document.getElementById("global-month-select");
+            if (selEl) selectedMonth = selEl.value;
+
+            const fiscalLabel = document.getElementById("sidebar-fiscal-label");
+            const repPeriod = document.getElementById("mis-reporting-period-label");
+            const optText = selEl?.selectedOptions[0]?.text || selectedMonth;
+
+            if (fiscalLabel) fiscalLabel.textContent = optText;
+            if (repPeriod) repPeriod.textContent = `Reporting Period: ${optText}`;
+
+            syncDatePickersForSelectedMonth();
+            updateUIMetrics();
+            renderRosterEngine();
+            showToast(`Switched active reporting period to ${optText}`, "info");
+        }
+
+        function syncDatePickersForSelectedMonth() {
+            const startEl = document.getElementById("roster-start-date");
+            const endEl = document.getElementById("roster-end-date");
+            if (!startEl || !endEl) return;
+
+            const [year, month] = selectedMonth.split("-");
+            const startDate = `${year}-${month}-01`;
+            const lastDayObj = new Date(parseInt(year), parseInt(month), 0);
+            const lastDay = String(lastDayObj.getDate()).padStart(2, '0');
+            const endDate = `${year}-${month}-${lastDay}`;
+
+            if (rosterPreset === "1day") { startEl.value = startDate; endEl.value = startDate; }
+            else if (rosterPreset === "3days") { startEl.value = startDate; endEl.value = `${year}-${month}-03`; }
+            else if (rosterPreset === "7days") { startEl.value = startDate; endEl.value = `${year}-${month}-07`; }
+            else if (rosterPreset === "14days") { startEl.value = startDate; endEl.value = `${year}-${month}-14`; }
+            else { startEl.value = startDate; endEl.value = endDate; }
+        }
+
+        function setRosterPreset(preset) {
+            rosterPreset = preset;
+            document.querySelectorAll(".roster-preset-btn").forEach(btn => btn.classList.remove("active", "bg-white", "text-brand-700", "shadow-sm"));
+            const activeBtn = document.getElementById(`preset-${preset}`);
+            if (activeBtn) activeBtn.classList.add("active", "bg-white", "text-brand-700", "shadow-sm");
+
+            syncDatePickersForSelectedMonth();
+            renderRosterEngine();
+        }
+
         function renderRosterEngine() {
-            const startStr = document.getElementById("roster-start-date")?.value || "2026-07-01";
-            const endStr = document.getElementById("roster-end-date")?.value || "2026-07-07";
+            const startEl = document.getElementById("roster-start-date");
+            const endEl = document.getElementById("roster-end-date");
+            if (!startEl || !endEl) return;
+
+            const startStr = startEl.value;
+            const endStr = endEl.value;
+            if (!startStr || !endStr) return;
 
             const startDate = new Date(startStr);
             const endDate = new Date(endStr);
@@ -1451,17 +1762,17 @@
             }
 
             const thead = document.getElementById("roster-matrix-thead");
-            if (!thead) return;
-
-            let headHTML = `<tr><th class="py-3 px-4 bg-slate-100 border-r border-slate-200 min-w-[200px] font-extrabold text-slate-800">${rosterGroupMode === 'staff' ? 'Caregiver / Staff' : 'Patient Name'}</th>`;
-            dateList.forEach(d => {
-                headHTML += `<th class="py-2 px-3 text-center border-r border-slate-200 font-bold min-w-[120px]">
-                    <div class="text-[10px] text-slate-400 uppercase">${d.dayName}</div>
-                    <div class="text-sm font-black text-slate-900">${d.dayNum}</div>
-                </th>`;
-            });
-            headHTML += `</tr>`;
-            thead.innerHTML = headHTML;
+            if (thead) {
+                let headHTML = `<tr><th class="py-3 px-4 bg-slate-100 border-r border-slate-200 min-w-[200px] font-extrabold text-slate-800">${rosterGroupMode === 'staff' ? 'Caregiver / Staff' : 'Patient Name'}</th>`;
+                dateList.forEach(d => {
+                    headHTML += `<th class="py-2 px-3 text-center border-r border-slate-200 font-bold min-w-[120px]">
+                        <div class="text-[10px] text-slate-400 uppercase">${d.dayName}</div>
+                        <div class="text-sm font-black text-slate-900">${d.dayNum}</div>
+                    </th>`;
+                });
+                headHTML += `</tr>`;
+                thead.innerHTML = headHTML;
+            }
 
             const tbody = document.getElementById("roster-matrix-tbody");
             if (!tbody) return;
@@ -1510,63 +1821,80 @@
                     rowHTML += `</tr>`;
                     tbody.innerHTML += rowHTML;
                 });
-            } else {
-                patients.forEach(pat => {
-                    let rowHTML = `<tr class="hover:bg-slate-50 border-b border-slate-100">
-                        <td class="py-3 px-4 border-r border-slate-200 bg-white font-bold text-slate-800">
-                            <div class="flex justify-between items-center">
-                                <span class="text-xs text-slate-900">${pat.name}</span>
-                                <span class="text-[9px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-mono">${pat.id}</span>
-                            </div>
-                            <div class="text-[10px] text-emerald-600 font-medium mt-0.5">${pat.classification}</div>
-                        </td>`;
-
-                    dateList.forEach(d => {
-                        const cellShifts = shifts.filter(s => s.patientId === pat.id && s.date === d.formatted);
-                        rowHTML += `<td class="p-1.5 border-r border-slate-100 roster-grid-cell vertical-top">`;
-                        cellShifts.forEach(sh => {
-                            rangeTotalShifts++;
-                            if (sh.type.includes("12 Hour")) range12h++;
-                            else if (sh.type.includes("24 Hour")) range24h++;
-                            else rangeVisits++;
-
-                            const stf = staff.find(s => s.id === sh.staffId) || { name: "Unassigned" };
-                            rowHTML += `
-                                <div class="p-1.5 rounded-lg border text-[10px] mb-1 font-semibold bg-violet-50 text-violet-700 border-violet-200 shadow-xs">
-                                    <div class="font-bold flex justify-between items-center">
-                                        <span class="truncate max-w-[80px]">${stf.name}</span>
-                                        <button onclick="cancelShift('${sh.id}')" class="text-slate-400 hover:text-rose-600 font-bold ml-1">×</button>
-                                    </div>
-                                    <div class="text-[9px] opacity-80 mt-0.5">${sh.type}</div>
-                                </div>
-                            `;
-                        });
-                        rowHTML += `</td>`;
-                    });
-                    rowHTML += `</tr>`;
-                    tbody.innerHTML += rowHTML;
-                });
             }
 
             const totEl = document.getElementById("roster-range-total-shifts");
-            const h12El = document.getElementById("roster-range-12h-shifts");
-            const h24El = document.getElementById("roster-range-24h-shifts");
+            const d12El = document.getElementById("roster-range-12h-shifts");
+            const d24El = document.getElementById("roster-range-24h-shifts");
             const visEl = document.getElementById("roster-range-visit-shifts");
-            const utilEl = document.getElementById("roster-range-staff-util");
+            const capEl = document.getElementById("roster-range-staff-util");
 
             if (totEl) totEl.textContent = `${rangeTotalShifts} Shifts`;
-            if (h12El) h12El.textContent = `${range12h} Shifts`;
-            if (h24El) h24El.textContent = `${range24h} Shifts`;
+            if (d12El) d12El.textContent = `${range12h} Shifts`;
+            if (d24El) d24El.textContent = `${range24h} Shifts`;
             if (visEl) visEl.textContent = `${rangeVisits} Visits`;
-            
+
             const maxCap = (staff.length * dateList.length);
-            if (utilEl) utilEl.textContent = `${maxCap > 0 ? ((rangeTotalShifts / maxCap) * 100).toFixed(0) : 0}% Cap`;
+            if (capEl) capEl.textContent = `${maxCap > 0 ? ((rangeTotalShifts / maxCap) * 100).toFixed(0) : 0}% Cap`;
+        }
+
+        function cancelShift(id) {
+            shifts = shifts.filter(s => s.id !== id);
+            saveStateToStorage();
+            renderRosterEngine();
+            showToast("Shift allocation removed from roster.", "info");
+        }
+
+        function submitMultiDayRoster() {
+            const selectedPatientCbs = document.querySelectorAll('input[name="multi-patient-check"]:checked');
+            const staffId = document.getElementById("multi-roster-staff").value;
+            const startStr = document.getElementById("multi-roster-start").value;
+            const endStr = document.getElementById("multi-roster-end").value;
+            const type = document.getElementById("multi-roster-type").value;
+
+            if (selectedPatientCbs.length === 0 || !staffId || !startStr || !endStr) {
+                showToast("Please select patients, staff, start date, and end date.", "danger");
+                return;
+            }
+
+            const startDate = new Date(startStr);
+            const endDate = new Date(endStr);
+            let addedCount = 0;
+
+            let cur = new Date(startDate);
+            while (cur <= endDate) {
+                const yyyy = cur.getFullYear();
+                const mm = String(cur.getMonth() + 1).padStart(2, '0');
+                const dd = String(cur.getDate()).padStart(2, '0');
+                const dateFormatted = `${yyyy}-${mm}-${dd}`;
+
+                selectedPatientCbs.forEach(cb => {
+                    const patId = cb.value;
+                    shifts.push({
+                        id: `SHF-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+                        date: dateFormatted,
+                        patientId: patId,
+                        staffId,
+                        type,
+                        status: "Confirmed"
+                    });
+                    addedCount++;
+                });
+
+                cur.setDate(cur.getDate() + 1);
+            }
+
+            saveStateToStorage();
+            closeModal("multi-roster-modal");
+            renderRosterEngine();
+            showToast(`Batch rostered ${addedCount} shift sessions!`, "success");
         }
 
         function renderPatientsView() {
             const grid = document.getElementById("patients-grid-container");
             if (!grid) return;
-            const search = (document.getElementById("patient-search-field")?.value || "").toLowerCase();
+            const searchField = document.getElementById("patient-search-field");
+            const search = searchField ? searchField.value.toLowerCase() : "";
 
             grid.innerHTML = "";
             const filtered = patients.filter(p => p.name.toLowerCase().includes(search) || p.condition.toLowerCase().includes(search));
@@ -1583,7 +1911,7 @@
                                 <h3 class="text-sm font-black text-slate-900">${p.name}</h3>
                                 <p class="text-xs text-slate-500">Age: ${p.age}</p>
                             </div>
-                            <span class="bg-brand-50 text-brand-700 text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-brand-200">${p.classification}</span>
+                            <span class="bg-brand-50 text-brand-700 text-[10px] font-bold px-2.5 py-0.5 rounded-full">${p.classification}</span>
                         </div>
 
                         <div class="border-t border-slate-100 pt-2 space-y-1">
@@ -1607,11 +1935,42 @@
                                 <button onclick="quickBillingAction('${p.id}')" class="flex-1 bg-slate-900 hover:bg-slate-800 text-white text-[10px] font-bold py-1.5 rounded-lg transition">Create Invoice</button>
                                 <button onclick="deletePatientProfile('${p.id}')" class="text-rose-600 hover:bg-rose-50 border border-rose-100 p-1.5 rounded-lg transition" title="Delete Profile"><i data-lucide="trash-2" class="h-4 w-4"></i></button>
                             </div>
+                            <button onclick="openEditPatientProviderModal('${p.id}')" class="w-full bg-brand-50 hover:bg-brand-100 text-brand-700 text-[10px] font-bold py-1.5 rounded-lg border border-brand-200 transition flex items-center justify-center gap-1">
+                                <i data-lucide="building-2" class="h-3 w-3"></i> Change Provider / Staff
+                            </button>
                         </div>
                     </div>
                 `;
             });
             if (window.lucide) lucide.createIcons();
+        }
+
+        function submitNewPatient() {
+            const name = document.getElementById("add-pat-name").value.trim();
+            const age = parseInt(document.getElementById("add-pat-age").value);
+            const classification = document.getElementById("add-pat-vertical").value;
+            const subcat = document.getElementById("add-pat-subcat").value.trim() || "General Care";
+            const condition = document.getElementById("add-pat-condition").value.trim();
+
+            if (!name || isNaN(age) || !condition) {
+                showToast("Please complete all patient profile details.", "danger");
+                return;
+            }
+
+            patients.push({ id: `PAT-${101 + patients.length}`, name, age, classification, subcat, condition });
+            saveStateToStorage();
+            populateDropdowns();
+            closeModal("add-patient-modal");
+            renderPatientsView();
+            showToast(`Care profile created for ${name}.`, "success");
+        }
+
+        function deletePatientProfile(id) {
+            patients = patients.filter(p => p.id !== id);
+            saveStateToStorage();
+            populateDropdowns();
+            renderPatientsView();
+            showToast("Patient record removed.", "info");
         }
 
         function renderStaffView() {
@@ -1620,13 +1979,13 @@
 
             grid.innerHTML = "";
             staff.forEach(s => {
-                const prv = providers.find(p => p.id === s.providerId) || { name: "Direct Onroll" };
+                const prv = providers.find(p => p.id === s.providerId) || { name: "Direct Care Team" };
                 grid.innerHTML += `
                     <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3">
                         <div class="flex justify-between items-start">
                             <div class="flex items-center gap-3">
                                 <div class="h-10 w-10 rounded-full bg-brand-100 text-brand-700 font-bold flex items-center justify-center border border-brand-200 text-xs">
-                                    ${s.name.split(' ').map(n => n[0]).join('')}
+                                    ${s.name.split(' ').map(n=>n[0]).join('')}
                                 </div>
                                 <div>
                                     <h3 class="text-sm font-black text-slate-900">${s.name}</h3>
@@ -1638,7 +1997,7 @@
 
                         <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100 text-xs space-y-1">
                             <div class="flex justify-between"><span class="text-slate-400">Vendor Group:</span> <span class="font-bold text-slate-800">${prv.name}</span></div>
-                            <div class="flex justify-between"><span class="text-slate-400">Shift Rate:</span> <span class="font-bold text-emerald-600">${s.rate === 0 ? '₹0/hr (Salaried Onroll)' : '₹' + s.rate + '/hr'}</span></div>
+                            <div class="flex justify-between"><span class="text-slate-400">Shift Rate:</span> <span class="font-bold text-emerald-600">${s.rate === 0 ? '₹0/hr (Salaried)' : '₹' + s.rate + '/hr'}</span></div>
                             <div class="flex justify-between"><span class="text-slate-400">Contact:</span> <span class="font-mono text-slate-700">${s.phone}</span></div>
                         </div>
 
@@ -1649,6 +2008,23 @@
             if (window.lucide) lucide.createIcons();
         }
 
+        function submitNewStaff() {
+            const name = document.getElementById("add-staff-name").value.trim();
+            const role = document.getElementById("add-staff-role").value.trim() || "Caregiver";
+            const rateInput = document.getElementById("add-staff-rate").value.trim();
+            const rate = rateInput !== "" ? parseFloat(rateInput) : 0;
+            const phone = document.getElementById("add-staff-phone").value.trim() || "+91 98111 00000";
+
+            if (!name) { showToast("Please enter staff member name.", "danger"); return; }
+
+            staff.push({ id: `STF-${201 + staff.length}`, providerId: "PRV-302", vendorCategory: "ST Onroll Nurses", name, role, rate: isNaN(rate) ? 0 : rate, phone });
+            saveStateToStorage();
+            populateDropdowns();
+            closeModal("add-staff-modal");
+            renderStaffView();
+            showToast(`Registered care staff ${name}.`, "success");
+        }
+
         function renderProvidersView() {
             const grid = document.getElementById("providers-grid-container");
             if (!grid) return;
@@ -1656,13 +2032,14 @@
             grid.innerHTML = "";
             providers.forEach(p => {
                 const attachedStaff = staff.filter(s => s.providerId === p.id);
+
                 grid.innerHTML += `
                     <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4">
                         <div class="flex justify-between items-start">
                             <div>
                                 <span class="text-[10px] bg-brand-50 text-brand-700 font-extrabold px-2 py-0.5 rounded-full border border-brand-200">${p.category}</span>
                                 <h3 class="text-sm font-black text-slate-900 mt-1">${p.name}</h3>
-                                <p class="text-xs text-slate-500">${p.subcategory}</p>
+                                <p class="text-xs text-slate-500">${p.subcategory || 'General Provider'}</p>
                             </div>
                             <button onclick="deleteProvider('${p.id}')" class="text-slate-300 hover:text-rose-600 p-1" title="Delete Provider"><i data-lucide="trash-2" class="h-4 w-4"></i></button>
                         </div>
@@ -1674,7 +2051,8 @@
 
                         <div class="border-t border-slate-100 pt-3">
                             <div class="flex justify-between items-center mb-2">
-                                <span class="text-[10px] font-bold text-slate-400 uppercase">Attached Staff (${attachedStaff.length})</span>
+                                <span class="text-[10px] font-bold text-slate-400 uppercase">Attached Caregivers (${attachedStaff.length})</span>
+                                <button onclick="quickAddStaffToVendor('${p.id}')" class="text-[10px] font-bold text-brand-600 hover:underline">+ Attach Staff</button>
                             </div>
                             <div class="space-y-1.5 max-h-28 overflow-y-auto pr-1">
                                 ${attachedStaff.length === 0 ? '<p class="text-[11px] text-slate-400 italic">No staff attached yet.</p>' : ''}
@@ -1695,41 +2073,407 @@
             if (window.lucide) lucide.createIcons();
         }
 
-        function renderUsersView() {
-            const tbody = document.getElementById("users-table-tbody");
-            const label = document.getElementById("users-count-label");
-            if (!tbody) return;
+        function submitNewProvider() {
+            const name = document.getElementById("add-prv-name").value.trim();
+            const category = document.getElementById("add-prv-type").value;
+            const subcategory = document.getElementById("add-prv-subcat").value.trim() || "General Care";
+            const contact = document.getElementById("add-prv-contact").value.trim() || "Operations Desk";
+            const tier = document.getElementById("add-prv-tier").value;
+            const phone = document.getElementById("add-prv-phone").value.trim() || "+91 98100 00000";
+            const email = document.getElementById("add-prv-email").value.trim() || "info@provider.com";
+            const location = document.getElementById("add-prv-location").value.trim() || "Delhi NCR";
 
-            tbody.innerHTML = "";
-            if (label) label.textContent = `${users.length} Active System Accounts`;
+            if (!name) { showToast("Please enter vendor organization name.", "danger"); return; }
 
-            users.forEach(u => {
-                const isCurrent = currentUser && currentUser.id === u.id;
-                tbody.innerHTML += `
-                    <tr class="hover:bg-slate-50 border-b border-slate-100 transition ${isCurrent ? 'bg-brand-50/50' : ''}">
-                        <td class="p-3.5 pl-6 font-mono text-slate-500 font-bold">${u.id}</td>
-                        <td class="p-3.5 font-bold text-slate-900">
-                            ${u.name} ${isCurrent ? '<span class="text-[9px] bg-brand-100 text-brand-700 px-1.5 py-0.5 rounded font-bold ml-1">(You)</span>' : ''}
-                            <span class="block text-[10px] text-slate-400 font-normal">${u.title || u.role}</span>
-                        </td>
-                        <td class="p-3.5 font-mono text-brand-700 font-bold">${u.username}</td>
-                        <td class="p-3.5 font-mono text-slate-500">•••••••• <button onclick="toggleRevealPassword('${u.id}')" class="text-[10px] text-slate-400 hover:text-brand-600 underline font-sans ml-1">Show</button></td>
-                        <td class="p-3.5"><span class="bg-slate-100 text-slate-800 text-[10px] font-bold px-2.5 py-1 rounded-full border border-slate-200">${u.role}</span></td>
-                        <td class="p-3.5 text-center">
-                            <span class="${u.status === 'Active' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-rose-50 text-rose-700 border-rose-200'} text-[10px] font-bold px-2 py-0.5 rounded-full border">
-                                ${u.status}
-                            </span>
-                        </td>
-                        <td class="p-3.5 text-center pr-6">
-                            <div class="flex items-center justify-center gap-1.5">
-                                <button onclick="openEditUserModal('${u.id}')" class="p-1.5 hover:bg-slate-100 text-slate-600 rounded-lg transition" title="Edit Credentials"><i data-lucide="edit-3" class="h-3.5 w-3.5"></i></button>
-                                ${!isCurrent ? `<button onclick="toggleUserStatus('${u.id}')" class="p-1.5 hover:bg-rose-50 text-rose-600 rounded-lg transition" title="Toggle Account Status"><i data-lucide="power" class="h-3.5 w-3.5"></i></button>` : ''}
-                            </div>
-                        </td>
-                    </tr>
-                `;
+            providers.push({
+                id: `PRV-${301 + providers.length}`,
+                name, category, subcategory, contact, tier, phone, email, location
             });
-            if (window.lucide) lucide.createIcons();
+            saveStateToStorage();
+            populateDropdowns();
+            closeModal("add-provider-modal");
+            renderProvidersView();
+            showToast(`Registered healthcare vendor ${name}.`, "success");
+        }
+
+        function deleteProvider(id) {
+            providers = providers.filter(p => p.id !== id);
+            saveStateToStorage();
+            populateDropdowns();
+            renderProvidersView();
+            showToast("Provider record removed.", "info");
+        }
+
+        function submitNewVendorStaff() {
+            const providerId = document.getElementById("vstaff-vendor-select").value;
+            const name = document.getElementById("vstaff-name").value.trim();
+            const role = document.getElementById("vstaff-role").value.trim() || "Clinician";
+            const rateInput = document.getElementById("vstaff-rate").value.trim();
+            const rate = rateInput !== "" ? parseFloat(rateInput) : 0;
+            const phone = document.getElementById("vstaff-phone").value.trim() || "+91 98000 00000";
+
+            if (!name) { showToast("Please enter staff member name.", "danger"); return; }
+            const prv = providers.find(p => p.id === providerId) || { category: "LTC Nursing Vendor" };
+
+            staff.push({
+                id: `STF-${201 + staff.length}`,
+                providerId,
+                vendorCategory: prv.category,
+                name,
+                role,
+                rate: isNaN(rate) ? 0 : rate,
+                phone
+            });
+
+            saveStateToStorage();
+            populateDropdowns();
+            closeModal("add-vendor-staff-modal");
+            renderProvidersView();
+            showToast(`Staff member ${name} attached to vendor network.`, "success");
+        }
+
+        function deleteVendorStaff(staffId) {
+            staff = staff.filter(s => s.id !== staffId);
+            saveStateToStorage();
+            populateDropdowns();
+            renderProvidersView();
+            renderStaffView();
+            showToast("Vendor staff member removed.", "info");
+        }
+
+        function downloadProviderCSVTemplate() {
+            const headers = ["Provider Name", "Category", "Subcategory", "Contact Person", "Phone", "Email", "Tier", "Location"];
+            const sampleRows = [
+                ["Apollo HomeCare Services", "LTC Nursing Vendor", "ICU & Ventilator Specialist", "Dr. Sameer Khan", "+91 98100 55443", "referrals@apollohome.in", "Tier 1 Preferred", "South Delhi"],
+                ["HealthCare Physio Network", "Physiotherapy Vendor / ST Onroll Physio", "Orthopedic & Neuro Physio", "Dr. Ritu Verma", "+91 98200 11223", "care@physionet.in", "Tier 1 Preferred", "Gurugram / NCR"]
+            ];
+            downloadCSV("Healthcare_Providers_Import_Template.csv", headers, sampleRows);
+        }
+
+        function handleBulkProviderCSVUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const text = e.target.result;
+                const lines = text.split("\n").filter(l => l.trim() !== "");
+                if (lines.length <= 1) {
+                    showToast("CSV file appears to be empty or missing data rows.", "danger");
+                    return;
+                }
+
+                let importedCount = 0;
+                for (let i = 1; i < lines.length; i++) {
+                    const cols = lines[i].split(",").map(c => c.replace(/^"|"$/g, '').trim());
+                    if (cols.length >= 2 && cols[0]) {
+                        providers.push({
+                            id: `PRV-${301 + providers.length}`,
+                            name: cols[0],
+                            category: cols[1] || "LTC Nursing Vendor",
+                            subcategory: cols[2] || "General Care",
+                            contact: cols[3] || "Operations Desk",
+                            phone: cols[4] || "+91 98000 00000",
+                            email: cols[5] || "info@provider.com",
+                            tier: cols[6] || "Tier 2 Standard",
+                            location: cols[7] || "Delhi NCR"
+                        });
+                        importedCount++;
+                    }
+                }
+
+                saveStateToStorage();
+                populateDropdowns();
+                closeModal("bulk-provider-modal");
+                renderProvidersView();
+                showToast(`Successfully imported ${importedCount} healthcare providers!`, "success");
+                event.target.value = "";
+            };
+            reader.readAsText(file);
+        }
+
+        function viewPrintableInvoice(invId) {
+            const inv = transactions.find(t => t.id === invId);
+            if (!inv) return;
+
+            const pat = patients.find(p => p.id === inv.patientId) || { name: "Patient Account", condition: "Clinical Care" };
+
+            const printId = document.getElementById("inv-print-id");
+            const printDate = document.getElementById("inv-print-date");
+            const printName = document.getElementById("inv-print-patient-name");
+            const printCond = document.getElementById("inv-print-patient-cond");
+            const printPayer = document.getElementById("inv-print-payer");
+            const printDesc = document.getElementById("inv-print-desc");
+            const printRev = document.getElementById("inv-print-rev");
+            const printColl = document.getElementById("inv-print-collected");
+            const printDues = document.getElementById("inv-print-dues");
+
+            if (printId) printId.textContent = inv.id;
+            if (printDate) printDate.textContent = inv.date;
+            if (printName) printName.textContent = pat.name;
+            if (printCond) printCond.textContent = pat.condition;
+            if (printPayer) printPayer.textContent = inv.payer;
+            if (printDesc) printDesc.textContent = inv.desc;
+            if (printRev) printRev.textContent = `₹${inv.revenue.toLocaleString()}`;
+            if (printColl) printColl.textContent = `₹${inv.collected.toLocaleString()}`;
+            if (printDues) printDues.textContent = `₹${(inv.revenue - inv.collected).toLocaleString()}`;
+
+            openModal("invoice-modal");
+        }
+
+        function downloadCSV(filename, headers, rows) {
+            let csvContent = "data:text/csv;charset=utf-8,\uFEFF" + [
+                headers.map(h => `"${String(h).replace(/"/g, '""')}"`).join(","),
+                ...rows.map(row => row.map(val => `"${String(val !== undefined && val !== null ? val : '').replace(/"/g, '""')}"`).join(","))
+            ].join("\n");
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", filename);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast(`Exported ${filename} successfully.`, "success");
+        }
+
+        function exportMISDataToExcel() {
+            const headers = ["Vertical Category", "Target Revenue (INR)", "Realized Revenue (INR)", "Collections (INR)", "Outstanding Dues (INR)", "Completion %"];
+            const tgts = getActiveTargets(selectedMonth);
+
+            let achievedLtc = 0, collectLtc = 0;
+            let achievedPhysio = 0, collectPhysio = 0;
+            let achievedNurse = 0, collectNurse = 0;
+            let achievedDoctor = 0, collectDoctor = 0;
+            let achievedDiag = 0, collectDiag = 0;
+            let achievedEq = 0, collectEq = 0;
+
+            transactions.forEach(t => {
+                if (t.vertical === "LTC Shifts") { achievedLtc += t.revenue; collectLtc += t.collected; }
+                else if (t.vertical === "ST-Physio") { achievedPhysio += t.revenue; collectPhysio += t.collected; }
+                else if (t.vertical === "ST-Nurse") { achievedNurse += t.revenue; collectNurse += t.collected; }
+                else if (t.vertical === "ST-Doctor") { achievedDoctor += t.revenue; collectDoctor += t.collected; }
+                else if (t.vertical === "ST-Diagnostics") { achievedDiag += t.revenue; collectDiag += t.collected; }
+                else if (t.vertical && t.vertical.startsWith("Equipment")) { achievedEq += t.revenue; collectEq += t.collected; }
+            });
+
+            const rows = [
+                ["Long-Term Care (LTC Shifts)", tgts.ltc, achievedLtc, collectLtc, achievedLtc - collectLtc, tgts.ltc > 0 ? `${((achievedLtc / tgts.ltc) * 100).toFixed(1)}%` : '0%'],
+                ["ST - Physiotherapy", tgts.st_physio || 0, achievedPhysio, collectPhysio, achievedPhysio - collectPhysio, tgts.st_physio > 0 ? `${((achievedPhysio / tgts.st_physio) * 100).toFixed(1)}%` : '0%'],
+                ["ST - Skilled Nurse Visits", tgts.st_nurse || 0, achievedNurse, collectNurse, achievedNurse - collectNurse, tgts.st_nurse > 0 ? `${((achievedNurse / tgts.st_nurse) * 100).toFixed(1)}%` : '0%'],
+                ["ST - Doctor Consults", tgts.st_doctor || 0, achievedDoctor, collectDoctor, achievedDoctor - collectDoctor, tgts.st_doctor > 0 ? `${((achievedDoctor / tgts.st_doctor) * 100).toFixed(1)}%` : '0%'],
+                ["ST - Diagnostics / Lab", tgts.st_diag || 0, achievedDiag, collectDiag, achievedDiag - collectDiag, tgts.st_diag > 0 ? `${((achievedDiag / tgts.st_diag) * 100).toFixed(1)}%` : '0%'],
+                ["Medical Equipment (Logistics)", tgts.equipment, achievedEq, collectEq, achievedEq - collectEq, tgts.equipment > 0 ? `${((achievedEq / tgts.equipment) * 100).toFixed(1)}%` : '0%']
+            ];
+
+            downloadCSV(`Pacific_One_MIS_Report_${selectedMonth}.csv`, headers, rows);
+        }
+
+        function exportPatientsToExcel() {
+            const headers = ["Patient ID", "Patient Name", "Age", "Vertical", "Subcategory", "Condition", "Assigned Provider", "Assigned Staff"];
+            const rows = patients.map(p => {
+                const prv = providers.find(pr => pr.id === p.assignedProviderId) || { name: "Direct" };
+                const stf = staff.find(st => st.id === p.assignedStaffId) || { name: "Unassigned" };
+                return [p.id, p.name, p.age, p.classification, p.subcat, p.condition, prv.name, stf.name];
+            });
+            downloadCSV(`Pacific_One_Patients_${selectedMonth}.csv`, headers, rows);
+        }
+
+        function exportProvidersToExcel() {
+            const headers = ["Provider ID", "Name", "Category", "Subcategory", "Contact Person", "Phone", "Email", "Tier", "Location"];
+            const rows = providers.map(p => [p.id, p.name, p.category, p.subcategory, p.contact, p.phone, p.email, p.tier, p.location]);
+            downloadCSV(`Pacific_One_Providers_${selectedMonth}.csv`, headers, rows);
+        }
+
+        function openModal(modalId) {
+            const el = document.getElementById(modalId);
+            if (el) el.classList.remove("hidden");
+        }
+
+        function closeModal(modalId) {
+            const el = document.getElementById(modalId);
+            if (el) el.classList.add("hidden");
+        }
+
+        function saveStateToStorage() {
+            localStorage.setItem("poh_v4.5_users", JSON.stringify(users));
+            localStorage.setItem("poh_v4.5_patients", JSON.stringify(patients));
+            localStorage.setItem("poh_v4.5_staff", JSON.stringify(staff));
+            localStorage.setItem("poh_v4.5_providers", JSON.stringify(providers));
+            localStorage.setItem("poh_v4.5_transactions", JSON.stringify(transactions));
+            localStorage.setItem("poh_v4.5_shifts", JSON.stringify(shifts));
+            localStorage.setItem("poh_v4.5_monthly_targets", JSON.stringify(monthlyTargets));
+        }
+
+        function populateDropdowns() {
+            const multiPatContainer = document.getElementById("multi-roster-patients-container");
+            if (multiPatContainer) {
+                multiPatContainer.innerHTML = "";
+                patients.forEach(p => {
+                    multiPatContainer.innerHTML += `
+                        <label class="flex items-center gap-2 bg-white p-2 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
+                            <input type="checkbox" name="multi-patient-check" value="${p.id}" checked class="rounded text-brand-600 focus:ring-brand-500">
+                            <div>
+                                <p class="text-xs font-bold text-slate-800">${p.name}</p>
+                                <p class="text-[10px] text-slate-400 font-mono">${p.id} • ${p.classification}</p>
+                            </div>
+                        </label>
+                    `;
+                });
+            }
+
+            const multiStaffSelect = document.getElementById("multi-roster-staff");
+            if (multiStaffSelect) {
+                multiStaffSelect.innerHTML = "";
+                staff.forEach(s => {
+                    const prv = providers.find(p => p.id === s.providerId) || { name: "Direct" };
+                    multiStaffSelect.innerHTML += `<option value="${s.id}">${s.name} (${s.role} - ${prv.name})</option>`;
+                });
+            }
+
+            const billPat = document.getElementById("bill-patient-select");
+            if (billPat) {
+                billPat.innerHTML = "";
+                patients.forEach(p => { billPat.innerHTML += `<option value="${p.id}">${p.name} (${p.id})</option>`; });
+            }
+
+            const vStaffVendor = document.getElementById("vstaff-vendor-select");
+            if (vStaffVendor) {
+                vStaffVendor.innerHTML = "";
+                providers.forEach(p => { vStaffVendor.innerHTML += `<option value="${p.id}">${p.name} (${p.category})</option>`; });
+            }
+        }
+
+        function toggleSelectAllMultiPatients() {
+            const checkboxes = document.querySelectorAll('input[name="multi-patient-check"]');
+            if (checkboxes.length === 0) return;
+            const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+            checkboxes.forEach(cb => cb.checked = !allChecked);
+        }
+
+        function selectBillingCategory(catVal) {
+            const sel = document.getElementById("bill-category-select");
+            if (sel) sel.value = catVal;
+            adjustBillingInputs();
+        }
+
+        function adjustBillingInputs() {
+            const catEl = document.getElementById("bill-category-select");
+            const desc = document.getElementById("bill-desc");
+            const rateInput = document.getElementById("bill-amount");
+            if (!catEl || !desc || !rateInput) return;
+
+            const cat = catEl.value;
+            if (cat === "LTC Shifts") { desc.placeholder = "12h Night Shift Skilled Care"; rateInput.value = 1500; }
+            else if (cat === "ST-Physio") { desc.placeholder = "Physiotherapy Session (Stroke Rehab)"; rateInput.value = 600; }
+            else if (cat === "ST-Doctor") { desc.placeholder = "Doctor Specialist Consult"; rateInput.value = 1500; }
+            else if (cat.startsWith("ST-")) { desc.placeholder = "ST Visit Session"; rateInput.value = 450; }
+            else { desc.placeholder = "Equipment Rental Plan"; rateInput.value = 500; }
+        }
+
+        function submitNewBill() {
+            const patientId = document.getElementById("bill-patient-select").value;
+            const vertical = document.getElementById("bill-category-select").value;
+            const desc = document.getElementById("bill-desc").value.trim() || "Clinical Service";
+            const payer = document.getElementById("bill-payer").value;
+            const revenue = parseFloat(document.getElementById("bill-amount").value);
+            const collected = parseFloat(document.getElementById("bill-collected").value) || 0;
+
+            if (isNaN(revenue) || revenue <= 0) {
+                showToast("Please provide gross billing amount.", "danger");
+                return;
+            }
+
+            const newInv = {
+                id: `INV-${601 + transactions.length}`,
+                patientId, vertical, subcat: "General Care", desc,
+                date: new Date().toISOString().split("T")[0],
+                revenue, collected, payer
+            };
+
+            transactions.push(newInv);
+            saveStateToStorage();
+            closeModal("quick-billing-modal");
+            updateUIMetrics();
+            showToast(`Invoice ${newInv.id} posted successfully.`, "success");
+        }
+
+        function quickBillingAction(patientId) {
+            openModal("quick-billing-modal");
+            const sel = document.getElementById("bill-patient-select");
+            if (sel) sel.value = patientId;
+        }
+
+        function openEditPatientProviderModal(patientId) {
+            const pat = patients.find(p => p.id === patientId);
+            if (!pat) return;
+
+            const nameDisp = document.getElementById("edit-patient-name-display");
+            const idDisp = document.getElementById("edit-patient-id-display");
+            const hidIn = document.getElementById("edit-patient-id-hidden");
+
+            if (nameDisp) nameDisp.textContent = pat.name;
+            if (idDisp) idDisp.textContent = pat.id;
+            if (hidIn) hidIn.value = pat.id;
+
+            const vendorSelect = document.getElementById("edit-patient-vendor-select");
+            if (vendorSelect) {
+                vendorSelect.innerHTML = "";
+                providers.forEach(prv => {
+                    vendorSelect.innerHTML += `<option value="${prv.id}" ${prv.id === pat.assignedProviderId ? 'selected' : ''}>${prv.name} (${prv.category})</option>`;
+                });
+            }
+
+            onPatientVendorChange();
+
+            const staffSelect = document.getElementById("edit-patient-staff-select");
+            if (staffSelect && pat.assignedStaffId) {
+                staffSelect.value = pat.assignedStaffId;
+            }
+
+            openModal("edit-patient-provider-modal");
+        }
+
+        function onPatientVendorChange() {
+            const prvEl = document.getElementById("edit-patient-vendor-select");
+            const staffSelect = document.getElementById("edit-patient-staff-select");
+            if (!prvEl || !staffSelect) return;
+
+            const prvId = prvEl.value;
+            staffSelect.innerHTML = "";
+            const matchingStaff = staff.filter(s => s.providerId === prvId);
+
+            if (matchingStaff.length === 0) {
+                staffSelect.innerHTML = `<option value="">No staff attached to this vendor</option>`;
+            } else {
+                matchingStaff.forEach(s => {
+                    staffSelect.innerHTML += `<option value="${s.id}">${s.name} (${s.role})</option>`;
+                });
+            }
+        }
+
+        function submitEditPatientProvider() {
+            const patId = document.getElementById("edit-patient-id-hidden").value;
+            const prvId = document.getElementById("edit-patient-vendor-select").value;
+            const stfId = document.getElementById("edit-patient-staff-select").value;
+            const vert = document.getElementById("edit-patient-vertical-select").value;
+
+            const pat = patients.find(p => p.id === patId);
+            if (pat) {
+                pat.assignedProviderId = prvId;
+                pat.assignedStaffId = stfId;
+                pat.classification = vert;
+                saveStateToStorage();
+                closeModal("edit-patient-provider-modal");
+                renderPatientsView();
+                showToast(`Updated provider/staff link for ${pat.name}.`, "success");
+            }
+        }
+
+        function quickAddStaffToVendor(prvId) {
+            openModal("add-vendor-staff-modal");
+            const sel = document.getElementById("vstaff-vendor-select");
+            if (sel) sel.value = prvId;
         }
 
         function renderLtcView() {
@@ -1739,7 +2483,7 @@
 
             const ltcTransactions = transactions.filter(t => t.vertical === "LTC Shifts");
             if (ltcTransactions.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="7" class="py-8 text-center text-slate-400 font-bold">No LTC transactions logged.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="7" class="py-8 text-center text-slate-400 font-bold">No LTC transactions found.</td></tr>`;
                 return;
             }
 
@@ -1776,15 +2520,15 @@
                 else if (t.vertical === "ST-Diagnostics") diagSum += t.revenue;
             });
 
-            const physioEl = document.getElementById("st-stat-physio");
-            const nurseEl = document.getElementById("st-stat-nurse");
-            const doctorEl = document.getElementById("st-stat-doctor");
-            const diagEl = document.getElementById("st-stat-diag");
+            const pEl = document.getElementById("st-stat-physio");
+            const nEl = document.getElementById("st-stat-nurse");
+            const dEl = document.getElementById("st-stat-doctor");
+            const gEl = document.getElementById("st-stat-diag");
 
-            if (physioEl) physioEl.textContent = `₹${physioSum.toLocaleString()}`;
-            if (nurseEl) nurseEl.textContent = `₹${nurseSum.toLocaleString()}`;
-            if (doctorEl) doctorEl.textContent = `₹${doctorSum.toLocaleString()}`;
-            if (diagEl) diagEl.textContent = `₹${diagSum.toLocaleString()}`;
+            if (pEl) pEl.textContent = `₹${physioSum.toLocaleString()}`;
+            if (nEl) nEl.textContent = `₹${nurseSum.toLocaleString()}`;
+            if (dEl) dEl.textContent = `₹${doctorSum.toLocaleString()}`;
+            if (gEl) gEl.textContent = `₹${diagSum.toLocaleString()}`;
 
             stTransactions.forEach(t => {
                 const pat = patients.find(p => p.id === t.patientId) || { name: "N/A" };
@@ -1826,36 +2570,82 @@
             });
         }
 
+        function renderUsersView() {
+            const tbody = document.getElementById("users-table-tbody");
+            const label = document.getElementById("users-count-label");
+            if (!tbody) return;
+
+            tbody.innerHTML = "";
+
+            if (!currentUser || currentUser.role !== 'Admin') {
+                tbody.innerHTML = `<tr><td colspan="7" class="py-8 text-center text-rose-600 font-bold"><i data-lucide="shield-alert" class="h-6 w-6 mx-auto mb-2 text-rose-500"></i> Access Denied: Admin credentials required to view staff logins and passwords.</td></tr>`;
+                if (label) label.textContent = "Restricted Access";
+                if (window.lucide) lucide.createIcons();
+                return;
+            }
+
+            if (label) label.textContent = `${users.length} Active System Accounts`;
+
+            users.forEach(u => {
+                const isCurrent = currentUser && currentUser.id === u.id;
+                tbody.innerHTML += `
+                    <tr class="hover:bg-slate-50 border-b border-slate-100 transition ${isCurrent ? 'bg-brand-50/50' : ''}">
+                        <td class="p-3.5 pl-6 font-mono text-slate-500 font-bold">${u.id}</td>
+                        <td class="p-3.5 font-bold text-slate-900">
+                            ${u.name} ${isCurrent ? '<span class="text-[9px] bg-brand-100 text-brand-700 px-1.5 py-0.5 rounded font-bold ml-1">(You)</span>' : ''}
+                            <span class="block text-[10px] text-slate-400 font-normal">${u.title || u.role}</span>
+                        </td>
+                        <td class="p-3.5 font-mono text-brand-700 font-bold">${u.username}</td>
+                        <td class="p-3.5 font-mono text-slate-500">•••••••• <button onclick="toggleRevealPassword('${u.id}')" class="text-[10px] text-brand-600 hover:text-brand-800 font-bold underline font-sans ml-1">Show</button></td>
+                        <td class="p-3.5"><span class="bg-slate-100 text-slate-800 text-[10px] font-bold px-2.5 py-1 rounded-full border border-slate-200">${u.role}</span></td>
+                        <td class="p-3.5 text-center">
+                            <span class="${u.status === 'Active' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-rose-50 text-rose-700 border-rose-200'} text-[10px] font-bold px-2 py-0.5 rounded-full border">
+                                ${u.status}
+                            </span>
+                        </td>
+                        <td class="p-3.5 text-center pr-6">
+                            <div class="flex items-center justify-center gap-1.5">
+                                <button onclick="openEditUserModal('${u.id}')" class="p-1.5 hover:bg-slate-100 text-slate-600 rounded-lg transition" title="Edit Credentials"><i data-lucide="edit-3" class="h-3.5 w-3.5"></i></button>
+                                ${!isCurrent ? `<button onclick="toggleUserStatus('${u.id}')" class="p-1.5 hover:bg-rose-50 text-rose-600 rounded-lg transition" title="Toggle Account Status"><i data-lucide="power" class="h-3.5 w-3.5"></i></button>` : ''}
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            });
+            if (window.lucide) lucide.createIcons();
+        }
+
+        function toggleRevealPassword(userId) {
+            if (!currentUser || currentUser.role !== 'Admin') {
+                showToast("Access Restricted: Admin credentials required to view access passwords.", "danger");
+                return;
+            }
+            const u = users.find(usr => usr.id === userId);
+            if (u) showToast(`Password for ${u.username}: ${u.password}`, "info");
+        }
+
         function openEditUserModal(userId) {
             const u = users.find(usr => usr.id === userId);
             if (!u) return;
 
-            const modalTitle = document.getElementById("user-modal-title");
-            const hiddenId = document.getElementById("edit-user-id-hidden");
-            const fullnameIn = document.getElementById("user-fullname");
-            const usernameIn = document.getElementById("user-username");
-            const passwordIn = document.getElementById("user-password");
-            const roleIn = document.getElementById("user-role");
-            const titleIn = document.getElementById("user-title");
-
-            if (modalTitle) modalTitle.textContent = "Edit Staff Credentials";
-            if (hiddenId) hiddenId.value = u.id;
-            if (fullnameIn) fullnameIn.value = u.name;
-            if (usernameIn) usernameIn.value = u.username;
-            if (passwordIn) passwordIn.value = u.password;
-            if (roleIn) roleIn.value = u.role;
-            if (titleIn) titleIn.value = u.title || "";
+            document.getElementById("user-modal-title").textContent = "Edit Staff Credentials";
+            document.getElementById("edit-user-id-hidden").value = u.id;
+            document.getElementById("user-fullname").value = u.name;
+            document.getElementById("user-username").value = u.username;
+            document.getElementById("user-password").value = u.password;
+            document.getElementById("user-role").value = u.role;
+            document.getElementById("user-title").value = u.title || "";
 
             openModal("add-user-modal");
         }
 
         function submitUserCredentials() {
-            const hiddenId = document.getElementById("edit-user-id-hidden")?.value;
-            const fullname = document.getElementById("user-fullname")?.value.trim();
-            const username = document.getElementById("user-username")?.value.trim().toLowerCase();
-            const password = document.getElementById("user-password")?.value.trim();
-            const role = document.getElementById("user-role")?.value;
-            const title = document.getElementById("user-title")?.value.trim() || role;
+            const hiddenId = document.getElementById("edit-user-id-hidden").value;
+            const fullname = document.getElementById("user-fullname").value.trim();
+            const username = document.getElementById("user-username").value.trim().toLowerCase();
+            const password = document.getElementById("user-password").value.trim();
+            const role = document.getElementById("user-role").value;
+            const title = document.getElementById("user-title").value.trim() || role;
 
             if (!fullname || !username || !password) {
                 showToast("Please provide full name, username, and password.", "danger");
@@ -1904,525 +2694,6 @@
             }
         }
 
-        function toggleRevealPassword(userId) {
-            const u = users.find(usr => usr.id === userId);
-            if (u) showToast(`Password for ${u.username}: ${u.password}`, "info");
-        }
-
-        function openEditTargetsModal() {
-            const targets = getActiveTargets(selectedMonth);
-            const optText = document.getElementById("global-month-select")?.selectedOptions[0]?.text || selectedMonth;
-            
-            const monthDisp = document.getElementById("targets-month-display");
-            if (monthDisp) monthDisp.textContent = optText;
-            
-            const ltcIn = document.getElementById("target-ltc-input");
-            const physioIn = document.getElementById("target-st-physio-input");
-            const nurseIn = document.getElementById("target-st-nurse-input");
-            const doctorIn = document.getElementById("target-st-doctor-input");
-            const diagIn = document.getElementById("target-st-diag-input");
-            const eqIn = document.getElementById("target-eq-input");
-            
-            if (ltcIn) ltcIn.value = targets.ltc;
-            if (physioIn) physioIn.value = targets.st_physio;
-            if (nurseIn) nurseIn.value = targets.st_nurse;
-            if (doctorIn) doctorIn.value = targets.st_doctor;
-            if (diagIn) diagIn.value = targets.st_diag;
-            if (eqIn) eqIn.value = targets.equipment;
-
-            openModal("edit-targets-modal");
-        }
-
-        function submitTargetsChanges() {
-            const ltc = parseFloat(document.getElementById("target-ltc-input")?.value) || 0;
-            const st_physio = parseFloat(document.getElementById("target-st-physio-input")?.value) || 0;
-            const st_nurse = parseFloat(document.getElementById("target-st-nurse-input")?.value) || 0;
-            const st_doctor = parseFloat(document.getElementById("target-st-doctor-input")?.value) || 0;
-            const st_diag = parseFloat(document.getElementById("target-st-diag-input")?.value) || 0;
-            const eq = parseFloat(document.getElementById("target-eq-input")?.value) || 0;
-
-            monthlyTargets[selectedMonth] = { ltc, st_physio, st_nurse, st_doctor, st_diag, equipment: eq };
-            saveStateToStorage();
-            closeModal("edit-targets-modal");
-            updateUIMetrics();
-            if (!document.getElementById("tab-st")?.classList.contains("hidden")) renderStView();
-            showToast(`Updated revenue targets for ${selectedMonth}.`, "success");
-        }
-
-        function openMoMStatsModal() {
-            renderMoMAnalytics();
-            openModal("mom-stats-modal");
-        }
-
-        function renderMoMAnalytics() {
-            const tbody = document.getElementById("mom-stats-tbody");
-            if (!tbody) return;
-            tbody.innerHTML = "";
-
-            const monthList = [
-                { key: "2026-05", label: "May 2026" },
-                { key: "2026-06", label: "June 2026" },
-                { key: "2026-07", label: "July 2026 (Live)" },
-                { key: "2026-08", label: "August 2026" },
-                { key: "2026-09", label: "September 2026" }
-            ];
-
-            let prevRev = 0, totalGrowthSum = 0, growthCount = 0, topMonthName = "July 2026", topMonthVal = 0, totalSettleSum = 0;
-
-            monthList.forEach((m, idx) => {
-                const tgts = getActiveTargets(m.key);
-                const monthTargetTotal = tgts.ltc + tgts.st + tgts.equipment;
-
-                let mRev = 0, mColl = 0;
-                transactions.forEach(t => {
-                    if (t.date && t.date.startsWith(m.key)) {
-                        mRev += t.revenue;
-                        mColl += t.collected;
-                    }
-                });
-
-                if (mRev === 0 && m.key === "2026-05") { mRev = 280000; mColl = 260000; }
-                if (mRev === 0 && m.key === "2026-06") { mRev = 340000; mColl = 310000; }
-                if (mRev === 0 && m.key === "2026-08") { mRev = 430000; mColl = 390000; }
-
-                const mDues = mRev - mColl;
-                const completionPct = monthTargetTotal > 0 ? ((mRev / monthTargetTotal) * 100).toFixed(1) : '0';
-                const settleSpeed = mRev > 0 ? ((mColl / mRev) * 100) : 0;
-                totalSettleSum += settleSpeed;
-
-                let growthBadge = `<span class="text-slate-400 font-mono">-</span>`;
-                if (idx > 0 && prevRev > 0) {
-                    const growthPct = (((mRev - prevRev) / prevRev) * 100);
-                    totalGrowthSum += growthPct;
-                    growthCount++;
-                    const badgeColor = growthPct >= 0 ? "bg-emerald-50 text-emerald-700" : "bg-rose-50 text-rose-700";
-                    growthBadge = `<span class="${badgeColor} px-2 py-0.5 rounded-full font-bold font-mono text-[10px]">${growthPct >= 0 ? '+' : ''}${growthPct.toFixed(1)}%</span>`;
-                }
-
-                if (mRev > topMonthVal) { topMonthVal = mRev; topMonthName = m.label; }
-                prevRev = mRev;
-
-                tbody.innerHTML += `
-                    <tr class="hover:bg-slate-50 transition border-b border-slate-100 ${m.key === selectedMonth ? 'bg-brand-50/40 font-bold' : ''}">
-                        <td class="p-3 font-bold text-slate-800">${m.label}</td>
-                        <td class="p-3 text-right font-mono text-slate-600">₹${monthTargetTotal.toLocaleString()}</td>
-                        <td class="p-3 text-right font-mono font-bold text-slate-900">₹${mRev.toLocaleString()}</td>
-                        <td class="p-3 text-right">${growthBadge}</td>
-                        <td class="p-3 text-right font-mono text-emerald-600">₹${mColl.toLocaleString()}</td>
-                        <td class="p-3 text-right font-mono text-rose-600">₹${mDues.toLocaleString()}</td>
-                        <td class="p-3 text-center"><span class="bg-brand-50 text-brand-700 px-2 py-0.5 rounded-full font-bold text-[10px]">${completionPct}%</span></td>
-                    </tr>
-                `;
-            });
-
-            const avgGrowth = growthCount > 0 ? (totalGrowthSum / growthCount).toFixed(1) : '0.0';
-            const avgGrowthEl = document.getElementById("mom-avg-growth-stat");
-            const topMonthEl = document.getElementById("mom-top-month-stat");
-            const topValEl = document.getElementById("mom-top-month-val");
-            const avgSettleEl = document.getElementById("mom-avg-settle-stat");
-
-            if (avgGrowthEl) avgGrowthEl.textContent = `${avgGrowth >= 0 ? '+' : ''}${avgGrowth}%`;
-            if (topMonthEl) topMonthEl.textContent = topMonthName;
-            if (topValEl) topValEl.textContent = `₹${topMonthVal.toLocaleString()} Realized`;
-            if (avgSettleEl) avgSettleEl.textContent = `${(totalSettleSum / monthList.length).toFixed(1)}%`;
-        }
-
-        function viewPrintableInvoice(invId) {
-            const inv = transactions.find(t => t.id === invId);
-            if (!inv) return;
-            const pat = patients.find(p => p.id === inv.patientId) || { name: "Client Account", condition: "General Care Plan" };
-
-            const invIdEl = document.getElementById("inv-print-id");
-            const invDateEl = document.getElementById("inv-print-date");
-            const invPatEl = document.getElementById("inv-print-patient-name");
-            const invCondEl = document.getElementById("inv-print-patient-cond");
-            const invPayerEl = document.getElementById("inv-print-payer");
-            const invStatusEl = document.getElementById("inv-print-status");
-            const invDescEl = document.getElementById("inv-print-desc");
-            const invRevEl = document.getElementById("inv-print-rev");
-            const invCollEl = document.getElementById("inv-print-collected");
-            const invDuesEl = document.getElementById("inv-print-dues");
-
-            if (invIdEl) invIdEl.textContent = inv.id;
-            if (invDateEl) invDateEl.textContent = inv.date;
-            if (invPatEl) invPatEl.textContent = pat.name;
-            if (invCondEl) invCondEl.textContent = pat.condition;
-            if (invPayerEl) invPayerEl.textContent = inv.payer || "Direct Pay";
-            if (invStatusEl) invStatusEl.textContent = inv.revenue === inv.collected ? "SETTLED" : "PARTIAL DUE";
-            if (invDescEl) invDescEl.textContent = `${inv.vertical} - ${inv.desc}`;
-            if (invRevEl) invRevEl.textContent = `₹${inv.revenue.toLocaleString()}`;
-            if (invCollEl) invCollEl.textContent = `₹${inv.collected.toLocaleString()}`;
-            if (invDuesEl) invDuesEl.textContent = `₹${(inv.revenue - inv.collected).toLocaleString()}`;
-
-            openModal("invoice-modal");
-        }
-
-        function populateDropdowns() {
-            const multiPatContainer = document.getElementById("multi-roster-patients-container");
-            if (multiPatContainer) {
-                multiPatContainer.innerHTML = "";
-                patients.forEach(p => {
-                    multiPatContainer.innerHTML += `
-                        <label class="flex items-center gap-2 bg-white p-2 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
-                            <input type="checkbox" name="multi-patient-check" value="${p.id}" checked class="rounded text-brand-600 focus:ring-brand-500">
-                            <div>
-                                <p class="text-xs font-bold text-slate-800">${p.name}</p>
-                                <p class="text-[10px] text-slate-400 font-mono">${p.id} • ${p.classification}</p>
-                            </div>
-                        </label>
-                    `;
-                });
-            }
-
-            const multiStaffSelect = document.getElementById("multi-roster-staff");
-            if (multiStaffSelect) {
-                multiStaffSelect.innerHTML = "";
-                staff.forEach(s => {
-                    const prv = providers.find(p => p.id === s.providerId) || { name: "Direct" };
-                    multiStaffSelect.innerHTML += `<option value="${s.id}">${s.name} (${s.role} - ${prv.name})</option>`;
-                });
-            }
-
-            const billPat = document.getElementById("bill-patient-select");
-            if (billPat) {
-                billPat.innerHTML = "";
-                patients.forEach(p => { billPat.innerHTML += `<option value="${p.id}">${p.name} (${p.id})</option>`; });
-            }
-
-            const vStaffVendorSelect = document.getElementById("vstaff-vendor-select");
-            if (vStaffVendorSelect) {
-                vStaffVendorSelect.innerHTML = "";
-                providers.forEach(p => {
-                    vStaffVendorSelect.innerHTML += `<option value="${p.id}">${p.name} (${p.category})</option>`;
-                });
-            }
-        }
-
-        function navigateMonth(delta) {
-            const select = document.getElementById("global-month-select");
-            if (!select) return;
-            let idx = select.selectedIndex + delta;
-            if (idx >= 0 && idx < select.options.length) {
-                select.selectedIndex = idx;
-                onMonthChange();
-            }
-        }
-
-        function onMonthChange() {
-            const select = document.getElementById("global-month-select");
-            if (!select) return;
-            selectedMonth = select.value;
-            const optText = select.selectedOptions[0]?.text || selectedMonth;
-
-            const fiscalLabel = document.getElementById("sidebar-fiscal-label");
-            const repPeriod = document.getElementById("mis-reporting-period-label");
-
-            if (fiscalLabel) fiscalLabel.textContent = optText;
-            if (repPeriod) repPeriod.textContent = `Reporting Period: ${optText}`;
-
-            updateUIMetrics();
-            renderRosterEngine();
-            showToast(`Switched active reporting period to ${optText}`, "info");
-        }
-
-        function setRosterPreset(preset) {
-            rosterPreset = preset;
-            document.querySelectorAll(".roster-preset-btn").forEach(btn => btn.classList.remove("active", "bg-white", "text-brand-700", "shadow-sm"));
-            const activeBtn = document.getElementById(`preset-${preset}`);
-            if (activeBtn) activeBtn.classList.add("active", "bg-white", "text-brand-700", "shadow-sm");
-
-            const startEl = document.getElementById("roster-start-date");
-            const endEl = document.getElementById("roster-end-date");
-            if (startEl && endEl) {
-                const [year, month] = selectedMonth.split("-");
-                startEl.value = `${year}-${month}-01`;
-                if (preset === "1day") endEl.value = `${year}-${month}-01`;
-                else if (preset === "3days") endEl.value = `${year}-${month}-03`;
-                else if (preset === "7days") endEl.value = `${year}-${month}-07`;
-                else if (preset === "14days") endEl.value = `${year}-${month}-14`;
-                else endEl.value = `${year}-${month}-30`;
-            }
-
-            renderRosterEngine();
-        }
-
-        function cancelShift(id) {
-            shifts = shifts.filter(s => s.id !== id);
-            saveStateToStorage();
-            renderRosterEngine();
-            showToast("Shift allocation removed from roster.", "info");
-        }
-
-        function submitMultiDayRoster() {
-            const selectedChecks = Array.from(document.querySelectorAll('input[name="multi-patient-check"]:checked')).map(cb => cb.value);
-            const staffId = document.getElementById("multi-roster-staff")?.value;
-            const startDateStr = document.getElementById("multi-roster-start")?.value;
-            const endDateStr = document.getElementById("multi-roster-end")?.value;
-            const type = document.getElementById("multi-roster-type")?.value || "12 Hour Day (08:00 - 20:00)";
-
-            if (selectedChecks.length === 0 || !staffId || !startDateStr || !endDateStr) {
-                showToast("Please select patients, assigned staff, and date range.", "danger");
-                return;
-            }
-
-            const startDate = new Date(startDateStr);
-            const endDate = new Date(endDateStr);
-            let addedCount = 0;
-
-            let cur = new Date(startDate);
-            while (cur <= endDate) {
-                const dateStr = cur.toISOString().split("T")[0];
-                selectedChecks.forEach(patId => {
-                    shifts.push({
-                        id: `SHF-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
-                        date: dateStr,
-                        patientId: patId,
-                        staffId,
-                        type,
-                        status: "Confirmed"
-                    });
-                    addedCount++;
-                });
-                cur.setDate(cur.getDate() + 1);
-            }
-
-            saveStateToStorage();
-            closeModal("multi-roster-modal");
-            renderRosterEngine();
-            showToast(`Dispatched ${addedCount} recurring shifts to multi-day roster.`, "success");
-        }
-
-        function toggleSelectAllMultiPatients() {
-            const checkboxes = document.querySelectorAll('input[name="multi-patient-check"]');
-            if (checkboxes.length === 0) return;
-            const allChecked = Array.from(checkboxes).every(cb => cb.checked);
-            checkboxes.forEach(cb => cb.checked = !allChecked);
-        }
-
-        function adjustBillingInputs() {
-            const cat = document.getElementById("bill-category-select")?.value;
-            const desc = document.getElementById("bill-desc");
-            const rateInput = document.getElementById("bill-amount");
-
-            if (!desc || !rateInput) return;
-
-            if (cat === "LTC Shifts") { desc.placeholder = "Skilled Care Shifts"; rateInput.value = 1500; }
-            else if (cat === "ST-Physio") { desc.placeholder = "Physiotherapy Session"; rateInput.value = 600; }
-            else if (cat === "ST-Doctor") { desc.placeholder = "Doctor Specialist Consult"; rateInput.value = 1500; }
-            else if (cat && cat.startsWith("ST-")) { desc.placeholder = "ST Visit Session"; rateInput.value = 450; }
-            else { desc.placeholder = "Equipment Rental / Sale"; rateInput.value = 500; }
-        }
-
-        function selectBillingCategory(catVal) {
-            const sel = document.getElementById("bill-category-select");
-            if (sel) sel.value = catVal;
-            adjustBillingInputs();
-        }
-
-        function quickBillingAction(patientId) {
-            openModal("quick-billing-modal");
-            const sel = document.getElementById("bill-patient-select");
-            if (sel) sel.value = patientId;
-        }
-
-        function submitNewBill() {
-            const patientId = document.getElementById("bill-patient-select")?.value;
-            const vertical = document.getElementById("bill-category-select")?.value;
-            const desc = document.getElementById("bill-desc")?.value.trim() || "Clinical Service";
-            const payer = document.getElementById("bill-payer")?.value;
-            const revenue = parseFloat(document.getElementById("bill-amount")?.value || "0");
-            const collected = parseFloat(document.getElementById("bill-collected")?.value || "0");
-
-            if (isNaN(revenue) || revenue <= 0) { showToast("Please provide gross billing amount.", "danger"); return; }
-
-            const newInv = {
-                id: `INV-${601 + transactions.length}`,
-                patientId, vertical, subcat: "General Care", desc,
-                date: new Date().toISOString().split("T")[0],
-                revenue, collected, payer
-            };
-
-            transactions.push(newInv);
-            saveStateToStorage();
-            closeModal("quick-billing-modal");
-            updateUIMetrics();
-
-            if (vertical === "LTC Shifts") switchTab("ltc");
-            else if (vertical && vertical.startsWith("ST-")) switchTab("st");
-            else switchTab("equipment");
-
-            showToast(`Invoice ${newInv.id} posted successfully.`, "success");
-        }
-
-        function submitNewPatient() {
-            const name = document.getElementById("add-pat-name")?.value.trim();
-            const age = parseInt(document.getElementById("add-pat-age")?.value || "0");
-            const classification = document.getElementById("add-pat-vertical")?.value;
-            const subcat = document.getElementById("add-pat-subcat")?.value.trim() || "General Care";
-            const condition = document.getElementById("add-pat-condition")?.value.trim();
-
-            if (!name || isNaN(age) || !condition) { showToast("Please complete all patient fields.", "danger"); return; }
-
-            patients.push({ id: `PAT-${101 + patients.length}`, name, age, classification, subcat, condition });
-            saveStateToStorage();
-            populateDropdowns();
-            closeModal("add-patient-modal");
-            renderPatientsView();
-            showToast(`Care profile created for ${name}.`, "success");
-        }
-
-        function submitNewStaff() {
-            const name = document.getElementById("add-staff-name")?.value.trim();
-            const role = document.getElementById("add-staff-role")?.value.trim() || "Caregiver";
-            const rateInput = document.getElementById("add-staff-rate")?.value.trim();
-            const rate = rateInput !== "" ? parseFloat(rateInput) : 0;
-            const phone = document.getElementById("add-staff-phone")?.value.trim() || "+91 98111 00000";
-
-            if (!name) { showToast("Please enter staff name.", "danger"); return; }
-
-            staff.push({ id: `STF-${201 + staff.length}`, providerId: "PRV-302", vendorCategory: "ST Onroll Nurses", name, role, rate: isNaN(rate) ? 0 : rate, phone });
-            saveStateToStorage();
-            populateDropdowns();
-            closeModal("add-staff-modal");
-            renderStaffView();
-            showToast(`Registered care staff ${name}.`, "success");
-        }
-
-        function submitNewProvider() {
-            const name = document.getElementById("add-prv-name")?.value.trim();
-            const category = document.getElementById("add-prv-type")?.value;
-            const subcategory = document.getElementById("add-prv-subcat")?.value.trim() || "General Care";
-            const contact = document.getElementById("add-prv-contact")?.value.trim() || "Operations Desk";
-            const tier = document.getElementById("add-prv-tier")?.value;
-            const phone = document.getElementById("add-prv-phone")?.value.trim() || "+91 98100 00000";
-            const email = document.getElementById("add-prv-email")?.value.trim() || "info@provider.com";
-            const location = document.getElementById("add-prv-location")?.value.trim() || "Delhi NCR";
-
-            if (!name) { showToast("Please enter vendor organization name.", "danger"); return; }
-
-            providers.push({
-                id: `PRV-${301 + providers.length}`,
-                name, category, subcategory, contact, tier, phone, email, location
-            });
-            saveStateToStorage();
-            populateDropdowns();
-            closeModal("add-provider-modal");
-            renderProvidersView();
-            showToast(`Registered healthcare vendor ${name}.`, "success");
-        }
-
-        function submitNewVendorStaff() {
-            const providerId = document.getElementById("vstaff-vendor-select")?.value;
-            const name = document.getElementById("vstaff-name")?.value.trim();
-            const role = document.getElementById("vstaff-role")?.value.trim() || "Clinician";
-            const rateInput = document.getElementById("vstaff-rate")?.value.trim();
-            const rate = rateInput !== "" ? parseFloat(rateInput) : 0;
-            const phone = document.getElementById("vstaff-phone")?.value.trim() || "+91 98000 00000";
-
-            if (!name) { showToast("Please enter staff member name.", "danger"); return; }
-            const prv = providers.find(p => p.id === providerId) || { category: "LTC Nursing Vendor" };
-
-            staff.push({
-                id: `STF-${201 + staff.length}`,
-                providerId,
-                vendorCategory: prv.category,
-                name, role,
-                rate: isNaN(rate) ? 0 : rate,
-                phone
-            });
-
-            saveStateToStorage();
-            populateDropdowns();
-            closeModal("add-vendor-staff-modal");
-            renderProvidersView();
-            showToast(`Staff member ${name} attached to vendor network.`, "success");
-        }
-
-        function deleteProvider(id) {
-            providers = providers.filter(p => p.id !== id);
-            saveStateToStorage();
-            populateDropdowns();
-            renderProvidersView();
-            showToast("Provider partner record removed.", "info");
-        }
-
-        function deleteVendorStaff(staffId) {
-            staff = staff.filter(s => s.id !== staffId);
-            saveStateToStorage();
-            populateDropdowns();
-            renderProvidersView();
-            renderStaffView();
-            showToast("Vendor staff member detached.", "info");
-        }
-
-        function deletePatientProfile(id) {
-            patients = patients.filter(p => p.id !== id);
-            saveStateToStorage();
-            populateDropdowns();
-            renderPatientsView();
-            showToast("Patient record removed.", "info");
-        }
-
-        function downloadCSV(filename, headers, rows) {
-            let csvContent = "data:text/csv;charset=utf-8,\uFEFF" + [
-                headers.map(h => `"${String(h).replace(/"/g, '""')}"`).join(","),
-                ...rows.map(row => row.map(val => `"${String(val !== undefined && val !== null ? val : '').replace(/"/g, '""')}"`).join(","))
-            ].join("\n");
-
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", filename);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            showToast(`Exported ${filename} successfully.`, "success");
-        }
-
-        function exportMISDataToExcel() {
-            const headers = ["Vertical Category", "Target Revenue (INR)", "Realized Revenue (INR)", "Collections (INR)", "Outstanding Dues (INR)", "Completion %"];
-            const tgts = getActiveTargets(selectedMonth);
-            
-            let achievedLtc = 0, collectLtc = 0;
-            let achievedPhysio = 0, collectPhysio = 0;
-            let achievedNurse = 0, collectNurse = 0;
-            let achievedDoctor = 0, collectDoctor = 0;
-            let achievedDiag = 0, collectDiag = 0;
-            let achievedEq = 0, collectEq = 0;
-
-            transactions.forEach(t => {
-                if (t.vertical === "LTC Shifts") { achievedLtc += t.revenue; collectLtc += t.collected; }
-                else if (t.vertical === "ST-Physio") { achievedPhysio += t.revenue; collectPhysio += t.collected; }
-                else if (t.vertical === "ST-Nurse") { achievedNurse += t.revenue; collectNurse += t.collected; }
-                else if (t.vertical === "ST-Doctor") { achievedDoctor += t.revenue; collectDoctor += t.collected; }
-                else if (t.vertical === "ST-Diagnostics") { achievedDiag += t.revenue; collectDiag += t.collected; }
-                else if (t.vertical && t.vertical.startsWith("Equipment")) { achievedEq += t.revenue; collectEq += t.collected; }
-            });
-
-            const rows = [
-                ["Long-Term Care (LTC Shifts)", tgts.ltc, achievedLtc, collectLtc, achievedLtc - collectLtc, tgts.ltc > 0 ? `${((achievedLtc / tgts.ltc) * 100).toFixed(1)}%` : '0%'],
-                ["ST - Physiotherapy", tgts.st_physio, achievedPhysio, collectPhysio, achievedPhysio - collectPhysio, tgts.st_physio > 0 ? `${((achievedPhysio / tgts.st_physio) * 100).toFixed(1)}%` : '0%'],
-                ["ST - Skilled Nurse Visit", tgts.st_nurse, achievedNurse, collectNurse, achievedNurse - collectNurse, tgts.st_nurse > 0 ? `${((achievedNurse / tgts.st_nurse) * 100).toFixed(1)}%` : '0%'],
-                ["ST - Doctor Consultations", tgts.st_doctor, achievedDoctor, collectDoctor, achievedDoctor - collectDoctor, tgts.st_doctor > 0 ? `${((achievedDoctor / tgts.st_doctor) * 100).toFixed(1)}%` : '0%'],
-                ["ST - Diagnostics / Lab", tgts.st_diag, achievedDiag, collectDiag, achievedDiag - collectDiag, tgts.st_diag > 0 ? `${((achievedDiag / tgts.st_diag) * 100).toFixed(1)}%` : '0%'],
-                ["Medical Equipment (Logistics)", tgts.equipment, achievedEq, collectEq, achievedEq - collectEq, tgts.equipment > 0 ? `${((achievedEq / tgts.equipment) * 100).toFixed(1)}%` : '0%']
-            ];
-
-            downloadCSV(`Pacific_One_MIS_Report_${selectedMonth}.csv`, headers, rows);
-        }
-
-        function exportPatientsToExcel() {
-            const headers = ["Patient ID", "Patient Name", "Age", "Vertical", "Subcategory", "Condition"];
-            const rows = patients.map(p => [p.id, p.name, p.age, p.classification, p.subcat || 'N/A', p.condition]);
-            downloadCSV(`Pacific_One_Patients_Directory_${selectedMonth}.csv`, headers, rows);
-        }
-
-        function exportProvidersToExcel() {
-            const headers = ["Provider ID", "Name", "Category", "Subcategory", "Contact", "Phone"];
-            const rows = providers.map(prv => [prv.id, prv.name, prv.category, prv.subcategory || 'N/A', prv.contact, prv.phone]);
-            downloadCSV(`Pacific_One_Providers_Directory_${selectedMonth}.csv`, headers, rows);
-        }
-
         function seedDatabaseWithMock() {
             patients = [...seed_patients];
             staff = [...seed_staff];
@@ -2432,54 +2703,18 @@
             saveStateToStorage();
             populateDropdowns();
             updateUIMetrics();
-            showToast("Database reset to initial seeds.", "info");
-        }
-
-        function openModal(modalId) {
-            const el = document.getElementById(modalId);
-            if (el) el.classList.remove("hidden");
-        }
-
-        function closeModal(modalId) {
-            const el = document.getElementById(modalId);
-            if (el) el.classList.add("hidden");
-        }
-
-        function saveStateToStorage() {
-            localStorage.setItem("poh_v4.5_users", JSON.stringify(users));
-            localStorage.setItem("poh_v4.5_patients", JSON.stringify(patients));
-            localStorage.setItem("poh_v4.5_staff", JSON.stringify(staff));
-            localStorage.setItem("poh_v4.5_providers", JSON.stringify(providers));
-            localStorage.setItem("poh_v4.5_transactions", JSON.stringify(transactions));
-            localStorage.setItem("poh_v4.5_shifts", JSON.stringify(shifts));
-            localStorage.setItem("poh_v4.5_monthly_targets", JSON.stringify(monthlyTargets));
-        }
-
-        function showToast(message, type = "info") {
-            const container = document.getElementById('toast-container');
-            if (!container) return;
-
-            const toast = document.createElement('div');
-            const colors = {
-                success: "bg-emerald-50 text-emerald-800 border border-emerald-200 shadow-emerald-50",
-                danger: "bg-rose-50 text-rose-800 border border-rose-200 shadow-rose-50",
-                info: "bg-brand-50 text-brand-800 border border-brand-200 shadow-brand-50",
-                warning: "bg-amber-50 text-amber-800 border border-amber-200 shadow-amber-50"
-            };
-
-            toast.className = `flex items-center gap-3 p-4 rounded-xl shadow-lg transition-all duration-300 transform translate-y-2 opacity-0 max-w-sm pointer-events-auto ${colors[type] || colors.info}`;
-            toast.innerHTML = `<p class="text-xs font-semibold leading-snug">${message}</p>`;
-
-            container.appendChild(toast);
-            setTimeout(() => { toast.classList.remove('translate-y-2', 'opacity-0'); }, 10);
-            setTimeout(() => {
-                toast.classList.add('opacity-0', 'scale-95');
-                setTimeout(() => { toast.remove(); }, 300);
-            }, 3500);
+            showToast("Database reset to initial benchmark seeds.", "info");
         }
 
         function initializeApplication() {
             users = JSON.parse(localStorage.getItem("poh_v4.5_users")) || default_users;
+            
+            // Ensure default admin always exists
+            if (!users || !Array.isArray(users) || users.length === 0 || !users.some(u => u && u.username === 'admin')) {
+                users = default_users;
+                localStorage.setItem("poh_v4.5_users", JSON.stringify(users));
+            }
+
             patients = JSON.parse(localStorage.getItem("poh_v4.5_patients")) || seed_patients;
             staff = JSON.parse(localStorage.getItem("poh_v4.5_staff")) || seed_staff;
             providers = JSON.parse(localStorage.getItem("poh_v4.5_providers")) || seed_providers;
@@ -2491,21 +2726,25 @@
 
             const activeSession = localStorage.getItem("poh_v4.5_current_session");
             if (activeSession) {
-                currentUser = JSON.parse(activeSession);
-                showMainApp();
+                try {
+                    currentUser = JSON.parse(activeSession);
+                    showMainApp();
+                } catch (err) {
+                    showLoginScreen();
+                }
             } else {
                 showLoginScreen();
             }
 
-            // Bind login form directly via JS listener
             const loginForm = document.getElementById("login-form");
             if (loginForm) {
-                loginForm.addEventListener("submit", handleLoginSubmit);
+                loginForm.onsubmit = handleLoginSubmit;
             }
 
             if (window.lucide) lucide.createIcons();
         }
 
+        // Explicit Global Bindings
         window.handleLoginSubmit = handleLoginSubmit;
         window.handleLogout = handleLogout;
         window.switchTab = switchTab;
@@ -2517,6 +2756,8 @@
         window.exportMISDataToExcel = exportMISDataToExcel;
         window.exportPatientsToExcel = exportPatientsToExcel;
         window.exportProvidersToExcel = exportProvidersToExcel;
+        window.downloadProviderCSVTemplate = downloadProviderCSVTemplate;
+        window.handleBulkProviderCSVUpload = handleBulkProviderCSVUpload;
         window.navigateMonth = navigateMonth;
         window.onMonthChange = onMonthChange;
         window.setRosterPreset = setRosterPreset;
@@ -2534,6 +2775,9 @@
         window.deleteVendorStaff = deleteVendorStaff;
         window.deletePatientProfile = deletePatientProfile;
         window.quickBillingAction = quickBillingAction;
+        window.openEditPatientProviderModal = openEditPatientProviderModal;
+        window.onPatientVendorChange = onPatientVendorChange;
+        window.submitEditPatientProvider = submitEditPatientProvider;
         window.viewPrintableInvoice = viewPrintableInvoice;
         window.renderPatientsView = renderPatientsView;
         window.renderStaffView = renderStaffView;
@@ -2545,8 +2789,8 @@
         window.toggleUserStatus = toggleUserStatus;
         window.seedDatabaseWithMock = seedDatabaseWithMock;
         window.adjustBillingInputs = adjustBillingInputs;
+        window.quickAddStaffToVendor = quickAddStaffToVendor;
 
-        // Initialize application on DOM content loaded
         document.addEventListener("DOMContentLoaded", initializeApplication);
     </script>
 </body>
