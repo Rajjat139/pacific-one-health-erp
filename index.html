@@ -121,8 +121,8 @@
                             <option value="2026-04">April 2026 (FY Start)</option>
                             <option value="2026-05">May 2026</option>
                             <option value="2026-06">June 2026</option>
-                            <option value="2026-07" selected>July 2026 (Live Audit)</option>
-                            <option value="2026-08">August 2026</option>
+                            <option value="2026-07">July 2026</option>
+                            <option value="2026-08" selected>August 2026 (Live Audit)</option>
                             <option value="2026-09">September 2026</option>
                             <option value="2026-10">October 2026</option>
                             <option value="2026-11">November 2026</option>
@@ -225,7 +225,7 @@
                     </div>
                     <div class="flex items-center justify-between">
                         <span>Fiscal Period</span>
-                        <span class="text-slate-400 font-mono" id="sidebar-fiscal-label">July 2026 Live Audit</span>
+                        <span class="text-slate-400 font-mono" id="sidebar-fiscal-label">August 2026 Live Audit</span>
                     </div>
                 </div>
             </aside>
@@ -271,7 +271,7 @@
                             </button>
                             <div class="flex items-center gap-2 bg-white px-3 py-1.5 border border-slate-200 rounded-xl shadow-sm text-xs font-bold text-slate-700">
                                 <i data-lucide="calendar" class="h-4 w-4 text-brand-600"></i>
-                                <span id="mis-reporting-period-label">Reporting Period: July 2026</span>
+                                <span id="mis-reporting-period-label">Reporting Period: August 2026</span>
                             </div>
                         </div>
                     </div>
@@ -410,6 +410,34 @@
                         <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm col-span-2 md:col-span-1">
                             <span class="text-[10px] font-bold text-slate-400 block uppercase">Staff Utilization</span>
                             <span class="text-lg font-black text-violet-600" id="roster-range-staff-util">0% Cap</span>
+                        </div>
+                    </div>
+
+                    <!-- Roster Group Mode & Vendor Filter Bar -->
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 px-1">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-bold text-slate-600">Group Grid By:</span>
+                            <button onclick="setRosterGroupMode('staff')" id="group-mode-staff" class="text-xs font-bold px-3 py-1 rounded-lg bg-slate-900 text-white shadow-sm">Caregivers / Staff</button>
+                            <button onclick="setRosterGroupMode('patient')" id="group-mode-patient" class="text-xs font-bold px-3 py-1 rounded-lg bg-white border border-slate-200 text-slate-600">Patients</button>
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <label class="text-xs font-bold text-slate-500 whitespace-nowrap">Filter Vendor Caregivers:</label>
+                            <select id="roster-vendor-filter" onchange="renderRosterEngine()" class="bg-white border border-slate-200 rounded-lg p-1.5 text-xs font-bold text-slate-700 focus:outline-none">
+                                <option value="All">All Vendor Categories</option>
+                                <option value="LTC Nursing Vendor">LTC Nursing Vendors</option>
+                                <option value="ST Onroll Nurses">ST Onroll Nurses</option>
+                                <option value="Physiotherapy Vendor / ST Onroll Physio">Physiotherapy Vendor / ST Onroll Physio</option>
+                                <option value="Ambulance Vendor">Ambulance Vendors</option>
+                                <option value="X-Ray Vendor">X-Ray Vendors</option>
+                                <option value="Equipment Vendor">Equipment Vendors</option>
+                            </select>
+                        </div>
+
+                        <div class="flex items-center gap-4 text-[11px] font-bold">
+                            <span class="flex items-center gap-1.5"><span class="h-2.5 w-2.5 rounded bg-brand-500"></span> 12h Shift</span>
+                            <span class="flex items-center gap-1.5"><span class="h-2.5 w-2.5 rounded bg-rose-500"></span> 24h Shift</span>
+                            <span class="flex items-center gap-1.5"><span class="h-2.5 w-2.5 rounded bg-emerald-500"></span> ST Visit</span>
                         </div>
                     </div>
 
@@ -1061,11 +1089,11 @@
             <div class="p-6 space-y-4 text-xs max-h-[80vh] overflow-y-auto">
                 <div class="bg-brand-50 border border-brand-200 rounded-xl p-3 flex justify-between items-center">
                     <span class="font-bold text-slate-700 text-xs">Active Target Month:</span>
-                    <span class="font-black text-brand-700 text-xs font-mono" id="targets-month-display">July 2026</span>
+                    <span class="font-black text-brand-700 text-xs font-mono" id="targets-month-display">August 2026</span>
                 </div>
                 <div>
                     <label class="block font-bold text-slate-600 mb-1">Long-Term Care (LTC) Target (₹)</label>
-                    <input type="number" id="target-ltc-input" placeholder="300000" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500 font-mono font-bold">
+                    <input type="number" id="target-ltc-input" placeholder="320000" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500 font-mono font-bold">
                 </div>
 
                 <div class="border-t border-slate-100 pt-3">
@@ -1073,15 +1101,15 @@
                     <div class="grid grid-cols-2 gap-3">
                         <div>
                             <label class="block font-bold text-slate-600 mb-1">ST - Physiotherapy (₹)</label>
-                            <input type="number" id="target-st-physio-input" placeholder="40000" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500 font-mono font-bold">
+                            <input type="number" id="target-st-physio-input" placeholder="42000" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500 font-mono font-bold">
                         </div>
                         <div>
                             <label class="block font-bold text-slate-600 mb-1">ST - Skilled Nurse Visit (₹)</label>
-                            <input type="number" id="target-st-nurse-input" placeholder="20000" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500 font-mono font-bold">
+                            <input type="number" id="target-st-nurse-input" placeholder="22000" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500 font-mono font-bold">
                         </div>
                         <div>
                             <label class="block font-bold text-slate-600 mb-1">ST - Doctor Consults (₹)</label>
-                            <input type="number" id="target-st-doctor-input" placeholder="12000" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500 font-mono font-bold">
+                            <input type="number" id="target-st-doctor-input" placeholder="13000" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500 font-mono font-bold">
                         </div>
                         <div>
                             <label class="block font-bold text-slate-600 mb-1">ST - Diagnostics / Lab (₹)</label>
@@ -1092,7 +1120,7 @@
 
                 <div>
                     <label class="block font-bold text-slate-600 mb-1">Medical Equipment Logistics Target (₹)</label>
-                    <input type="number" id="target-eq-input" placeholder="40000" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500 font-mono font-bold">
+                    <input type="number" id="target-eq-input" placeholder="45000" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500 font-mono font-bold">
                 </div>
             </div>
             <div class="bg-slate-50 px-6 py-4 flex justify-end gap-2 border-t border-slate-200">
@@ -1122,7 +1150,7 @@
                     </div>
                     <div class="bg-emerald-50 border border-emerald-100 p-4 rounded-xl">
                         <span class="text-[10px] font-bold text-emerald-500 uppercase tracking-wider block">Highest Revenue Month</span>
-                        <h4 class="text-2xl font-black text-emerald-900 mt-1" id="mom-top-month-stat">July 2026</h4>
+                        <h4 class="text-2xl font-black text-emerald-900 mt-1" id="mom-top-month-stat">August 2026</h4>
                         <p class="text-[11px] text-emerald-600 mt-0.5" id="mom-top-month-val">₹0.00 Realized</p>
                     </div>
                     <div class="bg-violet-50 border border-violet-100 p-4 rounded-xl">
@@ -1183,7 +1211,7 @@
                     </div>
                     <div class="text-right">
                         <span class="text-xs font-mono font-bold text-brand-700" id="inv-print-id">INV-000</span>
-                        <p class="text-[11px] text-slate-400" id="inv-print-date">July 2026</p>
+                        <p class="text-[11px] text-slate-400" id="inv-print-date">August 2026</p>
                     </div>
                 </div>
 
@@ -1301,12 +1329,12 @@
         ];
 
         const seed_transactions = [
-            { id: "INV-601", patientId: "PAT-101", vertical: "LTC Shifts", subcat: "Basic Care", desc: "MTD Skilled Nursing Allocation", date: "2026-07-05", revenue: 150000, collected: 130000, payer: "Medicare Direct" },
-            { id: "INV-603", patientId: "PAT-102", vertical: "ST-Physio", subcat: "Physiotherapy", desc: "ST-Physio Rehab (20 Sessions)", date: "2026-07-15", revenue: 50000, collected: 45000, payer: "Private Cash" }
+            { id: "INV-601", patientId: "PAT-101", vertical: "LTC Shifts", subcat: "Basic Care", desc: "MTD Skilled Nursing Allocation", date: "2026-08-05", revenue: 150000, collected: 130000, payer: "Medicare Direct" },
+            { id: "INV-603", patientId: "PAT-102", vertical: "ST-Physio", subcat: "Physiotherapy", desc: "ST-Physio Rehab (20 Sessions)", date: "2026-08-15", revenue: 50000, collected: 45000, payer: "Private Cash" }
         ];
 
         const seed_shifts = [
-            { id: "SHF-01", date: "2026-07-01", patientId: "PAT-101", staffId: "STF-201", type: "12 Hour Day (08:00 - 20:00)", status: "Confirmed" }
+            { id: "SHF-01", date: "2026-08-01", patientId: "PAT-101", staffId: "STF-201", type: "12 Hour Day (08:00 - 20:00)", status: "Confirmed" }
         ];
 
         // Global System State
@@ -1317,7 +1345,7 @@
         let providers = [];
         let transactions = [];
         let shifts = [];
-        let selectedMonth = "2026-07";
+        let selectedMonth = "2026-08";
         let rosterPreset = "7days";
         let rosterGroupMode = "staff";
 
@@ -1486,7 +1514,7 @@
         }
 
         function getActiveTargets(monthKey = selectedMonth) {
-            return monthlyTargets[monthKey] || { ltc: 300000, st_physio: 40000, st_nurse: 20000, st_doctor: 12000, st_diag: 8000, equipment: 40000 };
+            return monthlyTargets[monthKey] || { ltc: 320000, st_physio: 42000, st_nurse: 22000, st_doctor: 13000, st_diag: 8000, equipment: 45000 };
         }
 
         function updateUIMetrics() {
@@ -1570,12 +1598,12 @@
             const diagIn = document.getElementById("target-st-diag-input");
             const eqIn = document.getElementById("target-eq-input");
 
-            if (ltcIn) ltcIn.value = targets.ltc || 300000;
-            if (physIn) physIn.value = targets.st_physio || 40000;
-            if (nurseIn) nurseIn.value = targets.st_nurse || 20000;
-            if (docIn) docIn.value = targets.st_doctor || 12000;
+            if (ltcIn) ltcIn.value = targets.ltc || 320000;
+            if (physIn) physIn.value = targets.st_physio || 42000;
+            if (nurseIn) nurseIn.value = targets.st_nurse || 22000;
+            if (docIn) docIn.value = targets.st_doctor || 13000;
             if (diagIn) diagIn.value = targets.st_diag || 8000;
-            if (eqIn) eqIn.value = targets.equipment || 40000;
+            if (eqIn) eqIn.value = targets.equipment || 45000;
 
             openModal("edit-targets-modal");
         }
@@ -1609,8 +1637,8 @@
                 { key: "2026-04", label: "April 2026 (FY Start)" },
                 { key: "2026-05", label: "May 2026" },
                 { key: "2026-06", label: "June 2026" },
-                { key: "2026-07", label: "July 2026 (Live Audit)" },
-                { key: "2026-08", label: "August 2026" },
+                { key: "2026-07", label: "July 2026" },
+                { key: "2026-08", label: "August 2026 (Live Audit)" },
                 { key: "2026-09", label: "September 2026" },
                 { key: "2026-10", label: "October 2026" },
                 { key: "2026-11", label: "November 2026" },
@@ -1620,7 +1648,7 @@
                 { key: "2027-03", label: "March 2027 (FY End)" }
             ];
 
-            let prevRev = 0, totalGrowthSum = 0, growthCount = 0, topMonthName = "July 2026", topMonthVal = 0, totalSettleSum = 0;
+            let prevRev = 0, totalGrowthSum = 0, growthCount = 0, topMonthName = "August 2026", topMonthVal = 0, totalSettleSum = 0;
 
             monthList.forEach((m, idx) => {
                 const tgts = getActiveTargets(m.key);
@@ -1637,6 +1665,7 @@
                 if (mRev === 0 && m.key === "2026-04") { mRev = 260000; mColl = 240000; }
                 if (mRev === 0 && m.key === "2026-05") { mRev = 280000; mColl = 260000; }
                 if (mRev === 0 && m.key === "2026-06") { mRev = 340000; mColl = 310000; }
+                if (mRev === 0 && m.key === "2026-07") { mRev = 380000; mColl = 350000; }
 
                 const mDues = mRev - mColl;
                 const completionPct = monthTargetTotal > 0 ? ((mRev / monthTargetTotal) * 100).toFixed(1) : '0';
@@ -1735,9 +1764,28 @@
             renderRosterEngine();
         }
 
+        function setRosterGroupMode(mode) {
+            rosterGroupMode = mode;
+            const staffBtn = document.getElementById("group-mode-staff");
+            const patBtn = document.getElementById("group-mode-patient");
+            if (staffBtn && patBtn) {
+                if (mode === 'staff') {
+                    staffBtn.className = "text-xs font-bold px-3 py-1 rounded-lg bg-slate-900 text-white shadow-sm";
+                    patBtn.className = "text-xs font-bold px-3 py-1 rounded-lg bg-white border border-slate-200 text-slate-600";
+                } else {
+                    patBtn.className = "text-xs font-bold px-3 py-1 rounded-lg bg-slate-900 text-white shadow-sm";
+                    staffBtn.className = "text-xs font-bold px-3 py-1 rounded-lg bg-white border border-slate-200 text-slate-600";
+                }
+            }
+            renderRosterEngine();
+        }
+
         function renderRosterEngine() {
             const startEl = document.getElementById("roster-start-date");
             const endEl = document.getElementById("roster-end-date");
+            const vendorFilterEl = document.getElementById("roster-vendor-filter");
+            const vendorFilter = vendorFilterEl ? vendorFilterEl.value : "All";
+
             if (!startEl || !endEl) return;
 
             const startStr = startEl.value;
@@ -1781,7 +1829,12 @@
             let rangeTotalShifts = 0, range12h = 0, range24h = 0, rangeVisits = 0;
 
             if (rosterGroupMode === "staff") {
-                staff.forEach(stf => {
+                let filteredStaff = staff;
+                if (vendorFilter && vendorFilter !== "All") {
+                    filteredStaff = staff.filter(s => s.vendorCategory === vendorFilter);
+                }
+
+                filteredStaff.forEach(stf => {
                     const prv = providers.find(p => p.id === stf.providerId) || { name: "Direct" };
                     let rowHTML = `<tr class="hover:bg-slate-50 border-b border-slate-100">
                         <td class="py-3 px-4 border-r border-slate-200 bg-white font-bold text-slate-800">
@@ -1810,6 +1863,42 @@
                                 <div class="p-1.5 rounded-lg border text-[10px] mb-1 font-semibold ${badgeClass} shadow-xs">
                                     <div class="font-bold flex justify-between items-center">
                                         <span class="truncate max-w-[80px]">${pat.name}</span>
+                                        <button onclick="cancelShift('${sh.id}')" class="text-slate-400 hover:text-rose-600 font-bold ml-1">×</button>
+                                    </div>
+                                    <div class="text-[9px] opacity-80 mt-0.5">${sh.type}</div>
+                                </div>
+                            `;
+                        });
+                        rowHTML += `</td>`;
+                    });
+                    rowHTML += `</tr>`;
+                    tbody.innerHTML += rowHTML;
+                });
+            } else {
+                patients.forEach(pat => {
+                    let rowHTML = `<tr class="hover:bg-slate-50 border-b border-slate-100">
+                        <td class="py-3 px-4 border-r border-slate-200 bg-white font-bold text-slate-800">
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs text-slate-900">${pat.name}</span>
+                                <span class="text-[9px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-mono">${pat.id}</span>
+                            </div>
+                            <div class="text-[10px] text-emerald-600 font-medium mt-0.5">${pat.classification}</div>
+                        </td>`;
+
+                    dateList.forEach(d => {
+                        const cellShifts = shifts.filter(s => s.patientId === pat.id && s.date === d.formatted);
+                        rowHTML += `<td class="p-1.5 border-r border-slate-100 roster-grid-cell vertical-top">`;
+                        cellShifts.forEach(sh => {
+                            rangeTotalShifts++;
+                            if (sh.type.includes("12 Hour")) range12h++;
+                            else if (sh.type.includes("24 Hour")) range24h++;
+                            else rangeVisits++;
+
+                            const stf = staff.find(s => s.id === sh.staffId) || { name: "Unassigned" };
+                            rowHTML += `
+                                <div class="p-1.5 rounded-lg border text-[10px] mb-1 font-semibold bg-violet-50 text-violet-700 border-violet-200 shadow-xs">
+                                    <div class="font-bold flex justify-between items-center">
+                                        <span class="truncate max-w-[80px]">${stf.name}</span>
                                         <button onclick="cancelShift('${sh.id}')" class="text-slate-400 hover:text-rose-600 font-bold ml-1">×</button>
                                     </div>
                                     <div class="text-[9px] opacity-80 mt-0.5">${sh.type}</div>
@@ -2761,6 +2850,7 @@
         window.navigateMonth = navigateMonth;
         window.onMonthChange = onMonthChange;
         window.setRosterPreset = setRosterPreset;
+        window.setRosterGroupMode = setRosterGroupMode;
         window.renderRosterEngine = renderRosterEngine;
         window.cancelShift = cancelShift;
         window.submitMultiDayRoster = submitMultiDayRoster;
